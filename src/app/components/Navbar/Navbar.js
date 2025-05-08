@@ -99,6 +99,7 @@ export default function Navbar() {
           )}
         </div>
       </SectionWrapper>
+      <script type="text/javascript" src="https://www.bugherd.com/sidebarv2.js?apikey=dnzn7yjuanjsivlxvb45ag" async="true"></script>
     </header>
   );
 }
