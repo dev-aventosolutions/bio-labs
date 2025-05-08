@@ -1,0 +1,59 @@
+{
+    "hero": {
+      "titlePart1": "LAB",
+      "titlePart2": "ESPACIOS",
+      "subtitle": "Encuentra espacios/labs para tu startup",
+      "imageAlt": "Espacio de laboratorio {{number}}"
+    },
+    "navbar": {
+        "home": "Inicio",
+        "links": "Enlaces",
+        "faq": "Preguntas frecuentes",
+        "languageSelector": "Seleccionar idioma"
+      },
+      "filterBar": {
+    "regions": "Regiones",
+    "labos": "Laboratorios",
+    "structures": "Tipo de estructura",
+    "fetchError": "Error al obtener datos de filtro:",
+    "noRegion": "Sin información de región",
+    "noLabos": "Sin información de laboratorios",
+    "noStructure": "Sin tipo"
+  },
+  "labCard": {
+    "editButton": "Edit lab",
+    "region": "Region",
+    "noRegion": "No region info",
+    "labos": "Labos",
+    "noLabos": "No Labos info",
+    "structure": "Structure Type",
+    "noStructure": "No Type"
+  },
+  "labDetail": {
+    "description": "Esta es una descripción del espacio de laboratorio. Puede agregar más detalles aquí.",
+    "requestPlaceholder": "Ingrese su solicitud",
+    "alterButton": "Cambiar",
+    "structureType": "Tipo de estructura",
+    "labType": "Tipo de laboratorio en alquiler",
+    "application": "Cómo aplicar",
+    "offerType": "Tipo de oferta",
+    "surfaceTotal": "Superficie Total",
+    "surfaceMin": "Superficie mínima de alquiler",
+    "surfaceMax": "Superficie máxima de alquiler",
+    "durationMax": "Duración máxima de alquiler",
+    "technicalServices": "Servicios Técnicos Comunes",
+    "facilityServices": "Servicios Comunes de Gestión",
+    "months": "meses"
+  },
+    "drawer": {
+      "editLab": "Editar Laboratorio",
+      "editing": "Estás editando",
+      "contactEmail": "Correo de contacto",
+      "labName": "Nombre del Laboratorio",
+      "updateButton": "Actualizar datos",
+      "emailError": "El correo no coincide con el correo de contacto del laboratorio",
+      "updateSuccess": "¡Datos del laboratorio actualizados correctamente!",
+      "updateError": "Error al actualizar los datos del laboratorio",
+      "emailSendError": "Error al enviar el correo"
+    }
+  }

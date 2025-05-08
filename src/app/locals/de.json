@@ -1,0 +1,59 @@
+{
+    "hero": {
+      "titlePart1": "LAB",
+      "titlePart2": "RÄUME",
+      "subtitle": "Finden Sie Räume/Labs für Ihr Startup",
+      "imageAlt": "Laborraum {{number}}"
+    },
+    "navbar": {
+    "home": "Startseite",
+    "links": "Links",
+    "faq": "FAQ",
+    "languageSelector": "Sprache auswählen"
+  },
+  "filterBar": {
+    "regions": "Regionen",
+    "labos": "Labors",
+    "structures": "Strukturtyp",
+    "fetchError": "Fehler beim Abrufen der Filterdaten:",
+    "noRegion": "Keine Regionsinformation",
+    "noLabos": "Keine Laborinformation",
+    "noStructure": "Kein Typ"
+  },
+  "labCard": {
+    "editButton": "Labor bearbeiten",
+    "region": "Region",
+    "noRegion": "Keine Regionsinformation",
+    "labos": "Labors",
+    "noLabos": "Keine Laborinformation",
+    "structure": "Strukturtyp",
+    "noStructure": "Kein Typ"
+  },
+  "labDetail": {
+    "description": "Dies ist eine Beschreibung des Laborbereichs. Hier können Sie weitere Details hinzufügen.",
+    "requestPlaceholder": "Geben Sie Ihre Anfrage ein",
+    "alterButton": "Ändern",
+    "structureType": "Strukturtyp",
+    "labType": "Zu vermietender Laborart",
+    "application": "Wie man sich bewirbt",
+    "offerType": "Angebotsart",
+    "surfaceTotal": "Gesamtfläche",
+    "surfaceMin": "Mindestmietfläche",
+    "surfaceMax": "Maximale Mietfläche",
+    "durationMax": "Maximale Mietdauer",
+    "technicalServices": "Gemeinsame technische Dienstleistungen",
+    "facilityServices": "Gemeinsame Facility-Management-Dienstleistungen",
+    "months": "Monate"
+  },
+    "drawer": {
+      "editLab": "Lab bearbeiten",
+      "editing": "Sie bearbeiten",
+      "contactEmail": "Kontakt-E-Mail",
+      "labName": "Lab Name",
+      "updateButton": "Daten aktualisieren",
+      "emailError": "E-Mail stimmt nicht mit der Kontakt-E-Mail des Labs überein",
+      "updateSuccess": "Lab-Daten erfolgreich aktualisiert!",
+      "updateError": "Aktualisierung der Lab-Daten fehlgeschlagen",
+      "emailSendError": "E-Mail konnte nicht gesendet werden"
+    }
+  }
