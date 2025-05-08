@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useTranslation } from "../lib/translate"; // adjust the path as needed
-
 export default function FAQPage() {
   const { t } = useTranslation();
 
