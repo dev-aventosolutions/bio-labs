@@ -129,7 +129,7 @@ export default function FilterBar({ onFiltersChange }) {
 
           {/* Labos */}
           <Listbox value={selectedLabo} onChange={setSelectedLabo}>
-          <div className="relative w-full md:w-[140px] lg:w-[140px] text-[16px] font-normal cursor-pointer">    <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
+          <div className="relative w-full md:w-[170px] lg:w-[170px] text-[16px] font-normal cursor-pointer">    <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
       <div className="flex items-center space-x-2">
         <Hourglass className="w-4 h-4 text-[#1D0129]" />
         <span className="truncate text-left">
@@ -181,7 +181,7 @@ export default function FilterBar({ onFiltersChange }) {
 
           {/* Structures */}
           <Listbox value={selectedStructure} onChange={setSelectedStructure}>
-          <div className="relative w-full md:w-[180px] lg:w-[180px] text-[16px] font-normal cursor-pointer">    <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
+          <div className="relative w-full md:w-[210px] lg:w-[210px] text-[16px] font-normal cursor-pointer">    <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
       <div className="flex items-center space-x-2">
         <Building2 className="w-4 h-4 text-[#1D0129]" />
         <span className="truncate text-left">
