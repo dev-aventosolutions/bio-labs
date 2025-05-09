@@ -72,16 +72,16 @@ export default function FilterBar({ onFiltersChange }) {
 
   return (
     <SectionWrapper>
-      <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap gap-4 w-full items-stretch">
+      <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap gap-3 w-full items-stretch">
         {/* Filters Group */}
         <div className="flex flex-col md:flex-row md:flex-wrap gap-4 flex-1">
           {/* Region */}
           <Listbox value={selectedRegion} onChange={setSelectedRegion}>
-          <div className="relative w-full md:w-[140px] lg:w-[140px] text-[16px] font-normal cursor-pointer">
+          <div className="relative w-full md:w-[175px] lg:w-[175px] text-[16px] font-normal cursor-pointer">
           <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
   <div className="flex items-center space-x-2">
     <MapPin className="w-4 h-4 text-[#1D0129]" />
-    <span className="truncate text-left">
+    <span className="text-left">
       {selectedRegion || t("filterBar.regions")}
     </span>
   </div>
@@ -110,8 +110,8 @@ export default function FilterBar({ onFiltersChange }) {
           >
             {({ selected }) => (
               <>
-                <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
-                  {region}
+                <span className={`block  ${selected ? "font-medium text-[14px]" : "font-normal text-[14px]"}`}>
+                {region}
                 </span>
                 {selected && (
                   <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white">
@@ -132,7 +132,7 @@ export default function FilterBar({ onFiltersChange }) {
           <div className="relative w-full md:w-[170px] lg:w-[170px] text-[16px] font-normal cursor-pointer">    <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
       <div className="flex items-center space-x-2">
         <Hourglass className="w-4 h-4 text-[#1D0129]" />
-        <span className="truncate text-left">
+        <span className=" text-left">
           {selectedLabo || t("filterBar.labos")}
         </span>
       </div>
@@ -160,7 +160,7 @@ export default function FilterBar({ onFiltersChange }) {
           >
             {({ selected }) => (
               <>
-                <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
+                <span className={`block  ${selected ? "font-medium text-[14px]" : "font-normal text-[14px]"}`}>
                   {labo}
                 </span>
                 {selected && (
@@ -184,7 +184,7 @@ export default function FilterBar({ onFiltersChange }) {
           <div className="relative w-full md:w-[210px] lg:w-[210px] text-[16px] font-normal cursor-pointer">    <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
       <div className="flex items-center space-x-2">
         <Building2 className="w-4 h-4 text-[#1D0129]" />
-        <span className="truncate text-left">
+        <span className=" text-left">
           {selectedStructure || t("filterBar.structures")}
         </span>
       </div>
@@ -212,7 +212,7 @@ export default function FilterBar({ onFiltersChange }) {
           >
             {({ selected }) => (
               <>
-                <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
+                <span className={`block  ${selected ? "font-medium text-[14px]" : "font-normal text-[14px]"}`}>
                   {structure}
                 </span>
                 {selected && (

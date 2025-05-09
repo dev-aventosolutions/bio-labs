@@ -40,14 +40,14 @@ export default function Navbar() {
   return (
     <header className="w-full border-b border-gray-200 dark:border-gray-200 bg-white dark:bg-white">
       <SectionWrapper
-        padding="md:py-1 py-1"
+        padding="py-1 "
         className="flex justify-between items-center"
       >
-        <div className="flex space-x-6 items-center">
+        <div className="flex  items-center">
         <Link
   href="/"
-  className={`text-[#565656] text-[13px] dark:text-[#565656] hover:text-[#565656] border-l border-r border-gray-200 px-4 my-1 ${
-    pathname === "/" ? "font-bold text-[13px] text-[#030303]" : ""
+  className={`inline-flex items-center px-4  py-1 text-[#565656] text-[13px] hover:text-[#030303] hover:bg-gray-50 border-l border-r border-gray-200  ${
+    pathname === "/" ? "font-bold text-[#030303]" : ""
   }`}
 >
   {t("navbar.links")}
@@ -55,12 +55,13 @@ export default function Navbar() {
 
 <Link
   href="/FAQ"
-  className={`text-[#565656] text-[13px] dark:text-[#565656] hover:text-gray-800 border-r border-gray-200 pr-4 my-1 ${
-    pathname === "/FAQ" ? "font-bold text-[13px] text-[#030303]" : ""
+  className={`inline-flex items-center px-4  py-1 text-[#565656] text-[13px] hover:text-[#030303] hover:bg-gray-50  border-r border-gray-200 ${
+    pathname === "/FAQ" ? "font-bold text-[#030303]" : ""
   }`}
 >
   {t("navbar.faq")}
 </Link>
+
 
         </div>
 

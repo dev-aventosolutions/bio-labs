@@ -17,7 +17,7 @@ export default function SectionWrapper({
 
   return (
     <div
-      className={`w-full ${defaultLeftPadding} ${customRightPadding || defaultRightPadding} ${padding} ${className} mx-auto max-w-[1920px]`}
+      className={`w-full ${defaultLeftPadding} ${customRightPadding || defaultRightPadding} ${padding} ${className} mx-auto max-w-screen-xl`}
     >
       {children}
     </div>
