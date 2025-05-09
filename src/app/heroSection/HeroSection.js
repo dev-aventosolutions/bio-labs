@@ -19,7 +19,7 @@ export default function HeroSection() {
 
   return (
     <section className="bg-gradient-to-r bg-[url('/bg.png')] bg-cover bg-center relative overflow-hidden">
-<SectionWrapper customRightPadding="pr-4">
+<SectionWrapper customRightPadding="md:pr-4 2xl:pr-0">
 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
           {/* Text Content - now takes full width on medium screens, half on large */}
           <div className="lg:w-1/2 xl:w-[45%] order-1 lg:order-none">

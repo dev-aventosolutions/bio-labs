@@ -38,7 +38,7 @@ export default function LabCard({ lab: initialLab }) {
     <>
       {/* {toast.show && <Toast message={toast.message} type={toast.type} />} */}
 
-      <div
+      <div 
   className="bg-white dark:bg-white cursor-pointer text-black dark:text-black rounded-lg overflow-hidden transition-shadow duration-300 p-2 flex flex-col h-full relative"
   style={{
     boxShadow: "0px 1px 1px 1px rgba(0, 0, 0, 0.15)",

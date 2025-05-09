@@ -5,19 +5,20 @@ export default function SectionWrapper({
   className = "",
   padding = "py-4 md:py-6",
   disablePadding = false,
-  customRightPadding = "", // 👈 allow custom pr
+  customRightPadding = "",
+  customLeftPadding = "",
 }) {
-  const defaultLeftPadding = disablePadding
+  const leftPadding = disablePadding
     ? ""
-    : "pl-4 sm:pl-6 md:pl-10 lg:pl-16 xl:pl-24 2xl:pl-32 3xl:pl-48";
+    : customLeftPadding || "pl-4 md:pl-12 lg:pl-12 xl:pl-12 2xl:pl-0";
 
-  const defaultRightPadding = disablePadding
+  const rightPadding = disablePadding
     ? ""
-    : "pr-4 sm:pr-6 md:pr-10 lg:pr-16 xl:pr-24 2xl:pr-32 3xl:pr-48";
+    : customRightPadding || "pr-4 md:pr-12 lg:pr-12 xl:pr-12 2xl:pr-0";
 
   return (
     <div
-      className={`w-full ${defaultLeftPadding} ${customRightPadding || defaultRightPadding} ${padding} ${className} mx-auto max-w-screen-xl`}
+      className={`w-full mx-auto max-w-screen-xl ${leftPadding} ${rightPadding} ${padding} ${className}`}
     >
       {children}
     </div>
