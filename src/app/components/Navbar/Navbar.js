@@ -1,4 +1,3 @@
-// components/Navbar.js
 "use client";
 
 import { useState } from "react";
@@ -7,6 +6,8 @@ import Image from "next/image";
 import { useLanguage } from "../../lib/LanguageContext";
 import { useTranslation } from "../../lib/translate";
 import SectionWrapper from "../SectionWrapper";
+import { usePathname } from "next/navigation"; 
+
 
 const languages = [
   {
@@ -25,6 +26,8 @@ export default function Navbar() {
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
   const { t } = useTranslation();
+  const pathname = usePathname(); // current route, like '/' or '/FAQ'
+
 
   const currentLanguageObj =
     languages.find((lang) => lang.code === language) || languages[0];
@@ -41,18 +44,24 @@ export default function Navbar() {
         className="flex justify-between items-center"
       >
         <div className="flex space-x-6 items-center">
-          <Link
-            href="/"
-            className="text-gray-600 dark:text-gray-600 hover:text-gray-800 border-l border-r border-gray-200 px-4  my-1"
-          >
-            {t("navbar.links")}
-          </Link>
-          <Link
-            href="/FAQ"
-            className="text-gray-600 dark:text-gray-600 hover:text-gray-800 border-r border-gray-200 pr-4  my-1"
-          >
-            {t("navbar.faq")}
-          </Link>
+        <Link
+  href="/"
+  className={`text-[#565656] text-[13px] dark:text-[#565656] hover:text-[#565656] border-l border-r border-gray-200 px-4 my-1 ${
+    pathname === "/" ? "font-bold text-[13px] text-[#030303]" : ""
+  }`}
+>
+  {t("navbar.links")}
+</Link>
+
+<Link
+  href="/FAQ"
+  className={`text-[#565656] text-[13px] dark:text-[#565656] hover:text-gray-800 border-r border-gray-200 pr-4 my-1 ${
+    pathname === "/FAQ" ? "font-bold text-[13px] text-[#030303]" : ""
+  }`}
+>
+  {t("navbar.faq")}
+</Link>
+
         </div>
 
         <div className="relative">
@@ -99,7 +108,6 @@ export default function Navbar() {
           )}
         </div>
       </SectionWrapper>
-      <script type="text/javascript" src="https://www.bugherd.com/sidebarv2.js?apikey=dnzn7yjuanjsivlxvb45ag" async="true"></script>
     </header>
   );
 }

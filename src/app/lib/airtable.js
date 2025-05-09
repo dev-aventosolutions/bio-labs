@@ -4,7 +4,6 @@ const TABLE_NAME = process.env.NEXT_PUBLIC_AIRTABLE_TABLE_NAME;
 
 const API_URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
 
-
 export const fetchLabSpaces = async () => {
   const response = await fetch(API_URL, {
     headers: {
@@ -59,8 +58,8 @@ export const fetchLabSpaces = async () => {
       ? [record.fields["Services Communs Facility Management"]]
       : [],
     "Contact email": record.fields["Contact email"] || "",
-    "Attachment Summary":record.fields["Attachment Summary"] || "", 
-    "Created on":record.fields["Created on"] || "",
+    "Attachment Summary": record.fields["Attachment Summary"] || "",
+    "Created on": record.fields["Created on"] || "",
   }));
 };
 
@@ -118,9 +117,9 @@ export const fetchLabById = async (id) => {
       : record.fields["Services Communs Facility Management"]
       ? [record.fields["Services Communs Facility Management"]]
       : [],
-    "Contact email": record.fields["Contact email"] || "", 
-    "Attachment Summary":record.fields["Attachment Summary"] || "", 
-    "Created on":record.fields["Created on"] || "",
+    "Contact email": record.fields["Contact email"] || "",
+    "Attachment Summary": record.fields["Attachment Summary"] || "",
+    "Created on": record.fields["Created on"] || "",
   };
 };
 
@@ -151,12 +150,13 @@ export const updateLabData = async (id, updatedData) => {
   return result;
 };
 
-
-// check email exists =  
+// check email exists =
 
 export const checkEmailExists = async (email) => {
   const filterFormula = `LOWER({Contact email}) = '${email.toLowerCase()}'`;
-  const url = `${API_URL}?filterByFormula=${encodeURIComponent(filterFormula)}&maxRecords=1`;
+  const url = `${API_URL}?filterByFormula=${encodeURIComponent(
+    filterFormula
+  )}&maxRecords=1`;
 
   const response = await fetch(url, {
     headers: {
@@ -172,4 +172,32 @@ export const checkEmailExists = async (email) => {
   const data = await response.json();
 
   return data.records.length > 0;
+};
+
+// fetch FAQs from "FAQ" table
+export const fetchFAQs = async () => {
+  const FAQ_API_URL = `https://api.airtable.com/v0/${BASE_ID}/FAQ`;
+
+  const response = await fetch(FAQ_API_URL, {
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch FAQs");
+  }
+
+  const data = await response.json();
+
+  return data.records
+    .filter((record) => record.fields["Question"] && record.fields["Details"])
+    .sort((a, b) => (a.fields.Position || 999) - (b.fields.Position || 999))
+    .map((record) => ({
+      id: record.id,
+      question: record.fields["Question"],
+      answer: record.fields["Details"],
+      position: record.fields["Position"] || 999,
+    }));
 };

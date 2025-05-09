@@ -10,7 +10,6 @@ import SectionWrapper from "./components/SectionWrapper";
 import LabCard from "./components/cards/LabCard";
 import { fetchLabSpaces } from "./lib/airtable";
 const Maps = dynamic(() => import("./components/Maps"), { ssr: false });
-
 export default function Home() {
   const [labs, setLabs] = useState([]);
   const [filteredLabs, setFilteredLabs] = useState([]);
@@ -37,35 +36,37 @@ export default function Home() {
     fetchData();
   }, [fetchData]);
 
-  const handleFiltersChange = useCallback(({ region, labo, structure }) => {
-    let result = [...labs];
-  
-    if (region) {
-      result = result.filter((lab) => lab.notes?.trim() === region);
-    }
-    if (labo) {
-      result = result.filter((lab) =>
-        Array.isArray(lab.labos) ? lab.labos.includes(labo) : false
-      );
-    }
-    if (structure) {
-      result = result.filter((lab) =>
-        Array.isArray(lab.lab_de_structure)
-          ? lab.lab_de_structure.includes(structure)
-          : false
-      );
-    }
-  
-    setFilteredLabs(result);
-  }, [labs]); // ✅ <-- add this dependency
-  
+  const handleFiltersChange = useCallback(
+    ({ region, labo, structure }) => {
+      let result = [...labs];
+
+      if (region) {
+        result = result.filter((lab) => lab.notes?.trim() === region);
+      }
+      if (labo) {
+        result = result.filter((lab) =>
+          Array.isArray(lab.labos) ? lab.labos.includes(labo) : false
+        );
+      }
+      if (structure) {
+        result = result.filter((lab) =>
+          Array.isArray(lab.lab_de_structure)
+            ? lab.lab_de_structure.includes(structure)
+            : false
+        );
+      }
+
+      setFilteredLabs(result);
+    },
+    [labs]
+  ); 
 
   return (
     <>
-      <Navbar
+      {/* <Navbar
         currentLanguage={currentLanguage}
         onLanguageChange={(lang) => setCurrentLanguage(lang)}
-      />
+      /> */}
       <HeroSection />
       <Maps />
       <FilterBar onFiltersChange={handleFiltersChange} />

@@ -1,9 +1,14 @@
 "use client";
 
-import Link from "next/link";
-import { useTranslation } from "../lib/translate"; // adjust the path as needed
+import { useEffect, useState } from "react";
+import { fetchFAQs } from "../lib/airtable"; // adjust path if needed
+
 export default function FAQPage() {
-  const { t } = useTranslation();
+  const [faqs, setFaqs] = useState([]);
+
+  useEffect(() => {
+    fetchFAQs().then(setFaqs).catch(console.error);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white dark:bg-white">
@@ -13,35 +18,26 @@ export default function FAQPage() {
           <div className="w-full md:w-1/5 pr-0 md:pr-8 mb-8 md:mb-0">
             <div className="sticky top-24">
               <div className="text-4xl font-bold text-[#696A78] mb-4">
-                {t("faqPage.bioList")}
+                BioList
               </div>
               <div className="text-5xl font-bold text-blue-600">
-                {t("faqPage.faq")}
+                FAQ
               </div>
             </div>
           </div>
 
           {/* Right Side */}
           <div className="w-full md:w-4/5">
-            <div className="bg-white rounded-lg shadow-sm p-8">
-              {[
-                "whatIsThis",
-                "why",
-                "howSelected",
-                "who",
-                "howOften",
-                "suggest",
-                "ranked",
-                "contact",
-              ].map((key) => (
+            <div className="bg-white p-8">
+              {faqs.map((faq) => (
                 <div
-                  key={key}
+                  key={faq.id}
                   className="mb-8 pb-6 border-b border-gray-200"
                 >
                   <h3 className="text-2xl font-semibold text-[#696A78] mb-3">
-                    {t(`faqPage.${key}.question`)}
+                    {faq.question}
                   </h3>
-                  <p className="text-[#696A78]">{t(`faqPage.${key}.answer`)}</p>
+                  <p className="text-[#696A78]">{faq.answer}</p>
                 </div>
               ))}
             </div>
