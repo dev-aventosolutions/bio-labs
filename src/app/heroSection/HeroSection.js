@@ -14,13 +14,12 @@ export default function HeroSection() {
     "/pic6.png",
     "/pic7.png",
     "/pic8.png",
-   
   ];
 
   return (
-    <section className="bg-gradient-to-r bg-[url('/bg.png')] bg-cover bg-center relative overflow-hidden">
-<SectionWrapper customRightPadding="md:pr-4 2xl:pr-0">
-<div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+    <section className="bg-gradient-to-r bg-[url('/bg.png')] bg-cover bg-center relative overflow-hidden max-h-[240px]">
+      <SectionWrapper customRightPadding="md:pr-4 2xl:pr-0">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
           {/* Text Content - now takes full width on medium screens, half on large */}
           <div className="lg:w-1/2 xl:w-[45%] order-1 lg:order-none">
             <div className="text-white mb-4">
@@ -33,9 +32,9 @@ export default function HeroSection() {
               {t("hero.subtitle")}
             </p>
           </div>
-          
+
           {/* Images Grid - now takes full width on medium screens, half on large */}
-          <div className="lg:w-[182] hlg:h-[99] xl:w-[55%] grid grid-cols-2 sm:grid-cols-4 opacity-80 order-2 lg:order-none">
+          <div className="lg:w-[182px] xl:w-[55%] grid grid-cols-2 sm:grid-cols-4 opacity-80 order-2 lg:order-none">
             {images.map((imgSrc, index) => (
               <div 
                 key={index} 

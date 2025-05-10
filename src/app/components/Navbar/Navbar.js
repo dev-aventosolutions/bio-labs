@@ -6,7 +6,9 @@ import Image from "next/image";
 import { useLanguage } from "../../lib/LanguageContext";
 import { useTranslation } from "../../lib/translate";
 import SectionWrapper from "../SectionWrapper";
-import { usePathname } from "next/navigation"; 
+import { usePathname } from "next/navigation";
+import { ChevronDown } from "lucide-react"; 
+
 
 
 const languages = [
@@ -66,7 +68,7 @@ export default function Navbar() {
         </div>
 
         <div className="relative">
-          <button
+        <button
             className="flex items-center space-x-2 text-sm"
             onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
             aria-label="Change language"
@@ -83,6 +85,7 @@ export default function Navbar() {
             <span className="text-gray-700 dark:text-gray-700">
               {currentLanguageObj.code.toUpperCase()}
             </span>
+            <ChevronDown className="text-gray-700 w-4 h-4 dark:text-gray-700" /> {/* Add the Lucide dropdown icon */}
           </button>
 
           {languageDropdownOpen && (
