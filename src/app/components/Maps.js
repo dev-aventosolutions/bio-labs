@@ -45,7 +45,7 @@ export default function Maps() {
   };
 
   return (
-    <SectionWrapper className="relative w-full md:h-[70vh] h-[50vh]">
+    <SectionWrapper className="relative w-full md:h-[60vh] h-[50vh]">
       {/* Search Box */}
 
       {/* Map Embed */}
