@@ -10,11 +10,11 @@ export default function SectionWrapper({
 }) {
   const leftPadding = disablePadding
     ? ""
-    : customLeftPadding || "pl-4 ";
+    : customLeftPadding || "pl-4 md:pl-0 lg:pl-0 xl:pl-0 2xl:pl-0";
 
   const rightPadding = disablePadding
     ? ""
-    : customRightPadding || "pr-4 ";
+    : customRightPadding || "pr-4 md:pr-0 lg:pr-0 xl:pr-0 2xl:pr-0";
 
   return (
     <div
