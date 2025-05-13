@@ -6,6 +6,9 @@
   --foreground: #171717;
 }
 
+body {
+  overflow-y: auto !important;
+}
 
 /* @theme inline {
   --color-background: var(--background);

@@ -28,6 +28,7 @@
     "requestPlaceholder": "Enter your request",
     "alterButton": "Alter",
     "structureType": "Structure Type",
+    
     "labType": "Lab Type for rent",
     "application": "How to apply",
     "offerType": "Offer Type",
@@ -46,7 +47,10 @@
     "labos": "Labos",
     "noLabos": "No Labos info",
     "structure": "Structure Type",
-    "noStructure": "No Type"
+    "noStructure": "No Type",
+    "nooffer": "No offer",
+    "offers": "Offers"
+
   },
     "drawer": {
       "editLab": "Edit Lab",

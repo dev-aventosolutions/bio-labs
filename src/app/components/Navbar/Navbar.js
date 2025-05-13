@@ -7,9 +7,7 @@ import { useLanguage } from "../../lib/LanguageContext";
 import { useTranslation } from "../../lib/translate";
 import SectionWrapper from "../SectionWrapper";
 import { usePathname } from "next/navigation";
-import { ChevronDown } from "lucide-react"; 
-
-
+import { ChevronDown } from "lucide-react";
 
 const languages = [
   {
@@ -30,7 +28,6 @@ export default function Navbar() {
   const { t } = useTranslation();
   const pathname = usePathname(); // current route, like '/' or '/FAQ'
 
-
   const currentLanguageObj =
     languages.find((lang) => lang.code === language) || languages[0];
 
@@ -46,29 +43,27 @@ export default function Navbar() {
         className="flex justify-between items-center"
       >
         <div className="flex  items-center">
-        <Link
-  href="/"
-  className={`inline-flex items-center px-4  py-1 text-[#565656] text-[13px] hover:text-[#030303] hover:bg-gray-50 border-l border-r border-gray-200  ${
-    pathname === "/" ? "font-bold text-[#030303]" : ""
-  }`}
->
-  {t("navbar.links")}
-</Link>
+          <Link
+            href="/"
+            className={`inline-flex items-center px-4  py-1 text-[#565656] text-[13px] hover:text-[#030303] hover:bg-gray-50 border-l border-r border-gray-200  ${
+              pathname === "/" ? "font-bold text-[#030303]" : ""
+            }`}
+          >
+            {t("navbar.links")}
+          </Link>
 
-<Link
-  href="/FAQ"
-  className={`inline-flex items-center px-4  py-1 text-[#565656] text-[13px] hover:text-[#030303] hover:bg-gray-50  border-r border-gray-200 ${
-    pathname === "/FAQ" ? "font-bold text-[#030303]" : ""
-  }`}
->
-  {t("navbar.faq")}
-</Link>
-
-
+          <Link
+            href="/FAQ"
+            className={`inline-flex items-center px-4  py-1 text-[#565656] text-[13px] hover:text-[#030303] hover:bg-gray-50  border-r border-gray-200 ${
+              pathname === "/FAQ" ? "font-bold text-[#030303]" : ""
+            }`}
+          >
+            {t("navbar.faq")}
+          </Link>
         </div>
 
         <div className="relative">
-        <button
+          <button
             className="flex items-center space-x-2 text-sm"
             onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
             aria-label="Change language"
@@ -85,7 +80,8 @@ export default function Navbar() {
             <span className="text-gray-700 dark:text-gray-700">
               {currentLanguageObj.code.toUpperCase()}
             </span>
-            <ChevronDown className="text-gray-700 w-4 h-4 dark:text-gray-700" /> {/* Add the Lucide dropdown icon */}
+            <ChevronDown className="text-gray-700 w-4 h-4 dark:text-gray-700" />{" "}
+            {/* Add the Lucide dropdown icon */}
           </button>
 
           {languageDropdownOpen && (

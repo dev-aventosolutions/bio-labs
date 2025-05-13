@@ -13,7 +13,7 @@
       },
       "filterBar": {
     "regions": "Régions",
-    "labos": "Laboratoires",
+    "labos": "Labos",
     "structures": "Type de structure",
     "ouvreProchainement": "Ouvre prochainement",
     "ajouterLieu": "Ajouter un lieu",
@@ -29,7 +29,9 @@
     "labos": "Laboratoires",
     "noLabos": "Aucune information de labo",
     "structure": "Type de structure",
-    "noStructure": "Aucun type"
+    "noStructure": "Aucun type",
+    "nooffer": "Aucune offre",
+    "offers": "Offres"
   },
   "labDetail": {
     "description": "Ceci est une description de l'espace laboratoire. Vous pouvez ajouter plus de détails ici.",

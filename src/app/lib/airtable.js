@@ -60,6 +60,11 @@ export const fetchLabSpaces = async () => {
     "Contact email": record.fields["Contact email"] || "",
     "Attachment Summary": record.fields["Attachment Summary"] || "",
     "Created on": record.fields["Created on"] || "",
+    region: record.fields["Région"] || "",
+year:record.fields["Année d'ouverture"] || "",
+status: record.fields["Status"] || "Ouvert", // Default to "Ouvert" if not specified
+offer:record.fields["Type d'offre"] || "",
+    
   }));
 };
 
@@ -120,6 +125,11 @@ export const fetchLabById = async (id) => {
     "Contact email": record.fields["Contact email"] || "",
     "Attachment Summary": record.fields["Attachment Summary"] || "",
     "Created on": record.fields["Created on"] || "",
+    region: record.fields["Région"] || "",
+    year:record.fields["Année d'ouverture"] || "",
+    status: record.fields["Status"] || "Ouvert", 
+    offer:record.fields["Type d'offre"] || "",
+
   };
 };
 

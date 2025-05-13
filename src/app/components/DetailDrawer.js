@@ -55,9 +55,9 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
   {/* Show Lab Name and Created Year */}
   {(!lab.imageUrl || lab.imageUrl === "/default.png") && (
     <div className="absolute inset-0 flex items-center justify-center text-center">
-      <hp className="text-white text-[27px] font-bold mb-1 truncate">
-        {lab.name} {lab["Created on"] ? new Date(lab["Created on"]).getFullYear() : "N/A"}
-      </hp>
+      <h3 className="text-white text-[27px] font-bold mb-1 truncate">
+         {lab.year}
+      </h3>
     </div>
   )}
 </div>

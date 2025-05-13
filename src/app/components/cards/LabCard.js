@@ -5,6 +5,8 @@ import Image from "next/image";
 import DetailDrawer from "../DetailDrawer";
 import  EditModal  from "../EditModal";
 import { useTranslation } from "../../lib/translate";
+import { CheckSquare, Square } from "lucide-react";
+
 
 export default function LabCard({ lab: initialLab }) {
   const { t } = useTranslation();
@@ -75,7 +77,7 @@ export default function LabCard({ lab: initialLab }) {
     />
     <div className="absolute inset-0  flex flex-col justify-center items-center text-white text-center px-2">
     <h3 className="text-sm font-bold mb-1 truncate">
-          {truncateText(lab.name, 12)} {lab["Created on"] ? new Date(lab["Created on"]).getFullYear() : "N/A"}
+           {lab.year}
         </h3>           
     </div>
   </>
@@ -93,66 +95,63 @@ export default function LabCard({ lab: initialLab }) {
         </div>
 
         <div className="flex flex-col justify-between flex-grow">
-          <h3 className="text-[15.42px] font-bold mb-2 truncate">{lab.name}</h3>
+          <h3 className="text-[15.42px] font-bold  truncate">{lab.name}</h3>
 
           <div className="mb-2">
-  <p className="text-[11px] font-medium text-[#56575B] dark:text-[#56575B] mb-1">
-    {t("labCard.region")}
-  </p>
-  <span
-    className={`px-2 py-1 text-[12px] font-medium rounded-full ${
-      lab.notes
-        ? "bg-[#ffe0cc] text-[#000000]"
-        : "bg-red-100 text-red-800"
-    }`}
-  >
-    {lab.notes || t("labCard.noRegion")}
+  
+  <span className="text-[12px] font-semibold">
+    {lab.region || t("labCard.noRegion")}
   </span>
 </div>
 
 <div className="mb-2">
-  <p className="text-[11px] font-medium text-[#56575B] dark:text-[#56575B] mb-1">
+  <p className="text-[12px] font-bold mb-1">
     {t("labCard.labos")}
   </p>
-  <div className="flex flex-wrap gap-2">
-    {lab.labos && lab.labos.length > 0 ? (
-      lab.labos.map((item, index) => {
-        let bgColor = "bg-green-100";
-        let textColor = "text-green-800";
+  <div className="flex flex-row gap-1 text-[12px] font-medium">
+  {["L1", "L2", "Animalerie"].map((label) => {
+  const isChecked = lab.labos && lab.labos.includes(label);
+  return (
+    <div key={label} className="flex items-center gap-2 bg-[#ececec] px-2 py-1">
+      {isChecked ? (
+        <CheckSquare size={16} className="text-gray-400" />
+      ) : (
+        <Square size={16} className="text-gray-400" />
+      )}
+      <span className={isChecked ? "font-bold" : "font-medium"}>{label}</span>
+    </div>
+  );
+})}
 
-        if (item === "L1") {
-          bgColor = "bg-[#d1e2ff]";
-          textColor = "text-[#000000]";
-        } 
-        if(item === "L2") {
-          bgColor = "bg-[#c4ecff]";
-          textColor = "text-[#000000]";
-        }
-        else if (item === "Animalerie") {
-          bgColor = "bg-[#ffeab6]";
-          textColor = "text-[#000000]";
-        }
-
-        return (
-          <span
-            key={index}
-            className={`px-2 py-1 text-[12px] font-medium rounded-full ${bgColor} ${textColor}`}
-          >
-            {item}
-          </span>
-        );
-      })
-    ) : (
-      <span className="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">
-        {t("labCard.noLabos")}
-      </span>
-    )}
   </div>
 </div>
 
 
+<div className="mb-2">
+            <p className="text-[12px] font-bold mb-1">
+              Type d'offre
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {lab.offer && lab.offer.length > 0 ? (
+                lab.offer.map((item, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 text-[12px] font-medium  bg-[#ececec]"
+                  >
+                    {item}
+                  </span>
+                ))
+              ) : (
+                <span className="px-2 py-1 text-[12px] font-medium bg-[#ececec]">
+                  {t("labCard.nooffer")}
+                </span>
+              )}
+            </div>
+          </div>
+
+
           <div className="mb-2">
-            <p className="text-[11px] font-medium text-[#56575B] dark:text-[#56575B] mb-1">
+            <p className="text-[12px] font-bold mb-1">
               {t("labCard.structure")}
             </p>
             <div className="flex flex-wrap gap-2">
@@ -160,13 +159,13 @@ export default function LabCard({ lab: initialLab }) {
                 lab.lab_de_structure.map((item, index) => (
                   <span
                     key={index}
-                    className="px-2 py-1 text-[12px] font-medium rounded-full bg-green-100 text-green-800"
+                    className="px-2 py-1 text-[12px] font-medium  bg-[#ececec]"
                   >
                     {item}
                   </span>
                 ))
               ) : (
-                <span className="px-2 py-1 text-[12px] font-medium rounded-full bg-red-100 text-red-800">
+                <span className="px-2 py-1 text-[12px] font-medium  bg-[#ececec]">
                   {t("labCard.noStructure")}
                 </span>
               )}

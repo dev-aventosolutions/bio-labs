@@ -37,29 +37,50 @@ export default function Home() {
   }, [fetchData]);
 
   const handleFiltersChange = useCallback(
-    ({ region, labo, structure }) => {
+    ({ regions, labos, structures, ouvreProchainement }) => {
       let result = [...labs];
-
-      if (region) {
-        result = result.filter((lab) => lab.notes?.trim() === region);
-      }
-      if (labo) {
-        result = result.filter((lab) =>
-          Array.isArray(lab.labos) ? lab.labos.includes(labo) : false
+  
+      // Filter by regions (multiple can be selected)
+      if (regions && regions.length > 0) {
+        result = result.filter((lab) => 
+          lab.region && regions.includes(lab.region.trim())
         );
       }
-      if (structure) {
-        result = result.filter((lab) =>
-          Array.isArray(lab.lab_de_structure)
-            ? lab.lab_de_structure.includes(structure)
-            : false
-        );
+  
+      // Filter by labos (now checking array intersection)
+      if (labos && labos.length > 0) {
+        result = result.filter((lab) => {
+          if (!lab.labos || !Array.isArray(lab.labos)) return false;
+          return labos.some(selectedLabo => 
+            lab.labos.map(l => l.trim()).includes(selectedLabo.trim())
+          );
+        });
       }
-
+  
+      // Filter by structures (now checking array intersection)
+      if (structures && structures.length > 0) {
+        result = result.filter((lab) => {
+          if (!lab.lab_de_structure || !Array.isArray(lab.lab_de_structure)) return false;
+          return structures.some(selectedStructure => 
+            lab.lab_de_structure.map(s => s.trim()).includes(selectedStructure.trim())
+          );
+        });
+      }
+  
+      // Filter by status
+      if (ouvreProchainement) {
+        result = result.filter(
+          (lab) => lab.status === "Ouverture prévue dans le futur"
+        );
+      } else {
+        // Optional: Show only "Ouvert" labs when unchecked
+        result = result.filter((lab) => lab.status === "Ouvert");
+      }
+  
       setFilteredLabs(result);
     },
     [labs]
-  ); 
+  );
 
   return (
     <>
