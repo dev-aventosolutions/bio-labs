@@ -129,7 +129,7 @@ export default function LabCard({ lab: initialLab }) {
 
 <div className="mb-2">
             <p className="text-[12px] font-bold mb-1">
-              Type d'offre
+            Type d&apos;offre
             </p>
             <div className="flex flex-wrap gap-2">
               {lab.offer && lab.offer.length > 0 ? (
