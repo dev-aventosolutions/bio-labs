@@ -124,7 +124,7 @@ export default function FilterBar({ onFiltersChange }) {
   animate={{
     rotate: open ? 180 : 0, 
   }}
-  transition={{ duration: 0.2 }}
+  transition={{ duration: 0.4 }}
 >
   <ChevronDown className="w-4 h-4 text-[#1D0129]" />
 </motion.div>    </Listbox.Button>
@@ -223,7 +223,7 @@ export default function FilterBar({ onFiltersChange }) {
       </div>
  <motion.div
           animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.4 }}
         >
           <ChevronDown className="w-4 h-4 text-[#1D0129]" />
         </motion.div>    </Listbox.Button>
@@ -314,7 +314,7 @@ export default function FilterBar({ onFiltersChange }) {
       </div>
       <motion.div
           animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.4 }}
         >
           <ChevronDown className="w-4 h-4 text-[#1D0129]" />
         </motion.div>    </Listbox.Button>
