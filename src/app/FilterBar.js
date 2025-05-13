@@ -20,6 +20,7 @@ import { Listbox } from "@headlessui/react";
 import { motion, AnimatePresence } from "framer-motion";
 
 
+
 export default function FilterBar({ onFiltersChange }) {
   const { t } = useTranslation();
   const [regions, setRegions] = useState([]);
@@ -32,6 +33,8 @@ export default function FilterBar({ onFiltersChange }) {
   const [regionSearch, setRegionSearch] = useState("");
   const [laboSearch, setLaboSearch] = useState("");
   const [structureSearch, setStructureSearch] = useState("");
+  const [isStructureOpen, setIsStructureOpen] = useState(false);
+
 
 
   useEffect(() => {
@@ -101,6 +104,8 @@ export default function FilterBar({ onFiltersChange }) {
         <div className="flex flex-col md:flex-row md:flex-wrap gap-4 flex-1">
           {/* Region */}
           <Listbox value={selectedRegions} onChange={setSelectedRegions} multiple>
+          {({ open }) => (
+
   <div className="relative w-full md:w-[175px] lg:w-[175px] text-[16px] font-normal cursor-pointer">
     <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
       <div className="flex items-center space-x-2 flex-wrap gap-1">
@@ -115,8 +120,14 @@ export default function FilterBar({ onFiltersChange }) {
 </span>
 
       </div>
-      <ChevronDown className="w-4 h-4 text-[#1D0129]" />
-    </Listbox.Button>
+      <motion.div
+  animate={{
+    rotate: open ? 180 : 0, 
+  }}
+  transition={{ duration: 0.2 }}
+>
+  <ChevronDown className="w-4 h-4 text-[#1D0129]" />
+</motion.div>    </Listbox.Button>
 
     <AnimatePresence>
       <Listbox.Options
@@ -125,9 +136,9 @@ export default function FilterBar({ onFiltersChange }) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.2 }}
-        className="absolute z-50 max-h-60 w-full overflow-y-auto bg-white border-2 border-[#E3E3E3] py-1 text-[16px] focus:outline-none"
+        className="absolute z-50 max-h-60 min-w-[240px] w-full overflow-y-auto bg-white border-2 border-[#E3E3E3] py-1 text-[16px] focus:outline-none"
       >
-        <p className="text-[16px] font-semibold p-2">Region</p>
+        <p className="text-[16px] font-medium p-2">Region</p>
         {/* Search bar and funnel in one line */}
         <div className="p-2 flex items-center justify-between gap-2">
   <div className="relative w-full">
@@ -157,7 +168,7 @@ export default function FilterBar({ onFiltersChange }) {
           .map((region, i) => (
             <li
               key={i}
-              className="cursor-pointer text-[10px] select-none py-2 px-3 hover:bg-[#D31D74]/10 text-left flex items-center gap-2"
+              className="cursor-pointer text-[12px] select-none py-2 px-3 hover:bg-[#D31D74]/10 text-left flex items-center gap-2"
               onClick={(e) => {
                 e.stopPropagation();
                 const alreadySelected = selectedRegions.includes(region);
@@ -174,12 +185,14 @@ export default function FilterBar({ onFiltersChange }) {
                 readOnly
                 className="accent-[#D31D74]"
               />
-              <span className="text-[10px]">{region}</span>
+              <span className="text-[12px] font-normal text-[#686A78]">{region}</span>
             </li>
           ))}
       </Listbox.Options>
     </AnimatePresence>
   </div>
+
+)}
 </Listbox>
 
 
@@ -192,6 +205,8 @@ export default function FilterBar({ onFiltersChange }) {
 
           {/* Labos */}
           <Listbox value={selectedLabos} onChange={setSelectedLabos} multiple>
+          {({ open }) => ( 
+
   <div className="relative w-full md:w-[175px] lg:w-[175px] text-[16px] font-normal cursor-pointer">
     <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
       <div className="flex items-center space-x-2 flex-wrap gap-1">
@@ -206,8 +221,12 @@ export default function FilterBar({ onFiltersChange }) {
 </span>
 
       </div>
-      <ChevronDown className="w-4 h-4 text-[#1D0129]" />
-    </Listbox.Button>
+ <motion.div
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <ChevronDown className="w-4 h-4 text-[#1D0129]" />
+        </motion.div>    </Listbox.Button>
 
     <AnimatePresence>
       <Listbox.Options
@@ -216,7 +235,7 @@ export default function FilterBar({ onFiltersChange }) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.2 }}
-        className="absolute z-10 max-h-60 w-full overflow-auto bg-white border-2 border-[#E3E3E3] py-1 text-[16px] focus:outline-none"
+        className="absolute z-10 max-h-60 min-w-[240px] w-full overflow-auto bg-white border-2 border-[#E3E3E3] py-1 text-[16px] focus:outline-none"
       >
                 <p className="text-[16px] font-semibold p-2">Labos</p>
 
@@ -248,7 +267,7 @@ export default function FilterBar({ onFiltersChange }) {
           .map((labo, i) => (
             <li
               key={i}
-              className="cursor-pointer text-[14px] select-none py-2 px-3 hover:bg-[#D31D74]/10 text-left flex items-center gap-2"
+              className="cursor-pointer text-[12px] select-none py-2 px-3 hover:bg-[#D31D74]/10 text-left flex items-center gap-2"
               onClick={(e) => {
                 e.stopPropagation();
                 const alreadySelected = selectedLabos.includes(labo);
@@ -265,17 +284,20 @@ export default function FilterBar({ onFiltersChange }) {
                 readOnly
                 className="accent-[#D31D74]"
               />
-              <span>{labo}</span>
+              <span className="text-[12px] font-normal text-[#686A78]">{labo}</span>
             </li>
           ))}
       </Listbox.Options>
     </AnimatePresence>
   </div>
+          )}
 </Listbox>
 
 
           {/* Structures - Updated to match regions */}
           <Listbox value={selectedStructures} onChange={setSelectedStructures} multiple>
+          {({ open }) => ( 
+
   <div className="relative w-full md:w-[230px] lg:w-[230px] text-[16px] font-normal cursor-pointer">
     <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
       <div className="flex items-center space-x-2 flex-wrap gap-1">
@@ -290,8 +312,12 @@ export default function FilterBar({ onFiltersChange }) {
 </span>
 
       </div>
-      <ChevronDown className="w-4 h-4 text-[#1D0129]" />
-    </Listbox.Button>
+      <motion.div
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <ChevronDown className="w-4 h-4 text-[#1D0129]" />
+        </motion.div>    </Listbox.Button>
 
     <AnimatePresence>
       <Listbox.Options
@@ -300,7 +326,7 @@ export default function FilterBar({ onFiltersChange }) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.2 }}
-        className="absolute z-10 max-h-60 w-full overflow-auto bg-white border-2 border-[#E3E3E3] py-1 text-[16px] focus:outline-none"
+        className="absolute z-10 max-h-60 min-w-[260px] w-full overflow-auto bg-white border-2 border-[#E3E3E3] py-1 text-[16px] focus:outline-none"
       >
                 <p className="text-[16px] font-semibold p-2">Type de Structure</p>
 
@@ -332,7 +358,7 @@ export default function FilterBar({ onFiltersChange }) {
           .map((structure, i) => (
             <li
               key={i}
-              className="cursor-pointer text-[14px] select-none py-2 px-3 hover:bg-[#D31D74]/10 text-left flex items-center gap-2"
+              className="cursor-pointer text-[12px] select-none py-2 px-3 hover:bg-[#D31D74]/10 text-left flex items-center gap-2"
               onClick={(e) => {
                 e.stopPropagation();
                 const alreadySelected = selectedStructures.includes(structure);
@@ -351,12 +377,13 @@ export default function FilterBar({ onFiltersChange }) {
                 readOnly
                 className="accent-[#D31D74]"
               />
-              <span>{structure}</span>
+              <span className="text-[12px] font-normal text-[#686A78]">{structure}</span>
             </li>
           ))}
       </Listbox.Options>
     </AnimatePresence>
   </div>
+          )}
 </Listbox>
 
 

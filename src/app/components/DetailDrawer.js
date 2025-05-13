@@ -2,10 +2,27 @@
 
 import { X, ArrowRight, Pencil, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
   const [imageLoading, setImageLoading] = useState(true);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onClose(); // Call the onClose function when Escape is pressed
+      }
+    };
+  
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+  
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+  
 
   return (
     <>
