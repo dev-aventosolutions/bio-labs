@@ -98,9 +98,12 @@ export default function Home() {
           <p className="text-center text-red-500">{error}</p>
         ) : filteredLabs.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-            {filteredLabs.map((lab) => (
-              <LabCard key={lab.id} lab={lab} />
-            ))}
+            {[...filteredLabs]
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .map((lab) => (
+    <LabCard key={lab.id} lab={lab} />
+))}
+
           </div>
         ) : (
           <p className="text-center text-gray-500">

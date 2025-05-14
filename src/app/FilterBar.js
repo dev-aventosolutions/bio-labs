@@ -114,7 +114,7 @@ export default function FilterBar({ onFiltersChange }) {
               <div className="relative w-full md:w-[175px] lg:w-[175px] text-[16px] font-normal cursor-pointer">
                 <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
                   <div className="flex items-center space-x-2 flex-wrap gap-1">
-                    <MapPin />
+                    <MapPin  className="w-[12.52px] h-[15px] " style={{color:"rgba(29, 1, 41, 0.48)"}} />
                     <span className="text-left truncate flex items-center gap-1">
                       {t("filterBar.regions")}
                       {selectedRegions.length > 0 && (
@@ -210,7 +210,7 @@ export default function FilterBar({ onFiltersChange }) {
               <div className="relative w-full md:w-[175px] lg:w-[175px] text-[16px] font-normal cursor-pointer">
                 <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
                   <div className="flex items-center space-x-2 flex-wrap gap-1">
-                    <Labos className="w-4 h-4 text-[#1D0129]" />
+                    <Labos className="w-[10.67px] h-[14.67px] " style={{color:"rgba(29, 1, 41, 0.48)"}} />
                     <span className="text-left truncate flex items-center gap-1">
                       {t("filterBar.labos")}
                       {selectedLabos.length > 0 && (
@@ -255,7 +255,7 @@ export default function FilterBar({ onFiltersChange }) {
                         onClick={handleClearAll}
                         className="text-[#1D0129] flex items-center justify-center"
                       >
-                        <FunnelX className="w-4 h-4 cursor-pointer text-gray-400" />
+                        <FunnelX className="w-4 h-4 cursor-pointer" style={{color:"rgba(29, 1, 41, 0.48)"}} />
                       </button>
                     </div>
 
@@ -309,7 +309,7 @@ export default function FilterBar({ onFiltersChange }) {
               <div className="relative w-full md:w-[230px] lg:w-[230px] text-[16px] font-normal cursor-pointer">
                 <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
                   <div className="flex items-center space-x-2 flex-wrap gap-1">
-                    <Structure className="w-4 h-4 text-[#1D0129]" />
+                    <Structure className="w-4 h-4" style={{color:"rgba(29, 1, 41, 0.48)"}} />
                     <span className="text-left truncate flex items-center gap-1">
                       {t("filterBar.structures")}
                       {selectedStructures.length > 0 && (
@@ -356,7 +356,7 @@ export default function FilterBar({ onFiltersChange }) {
                         onClick={handleClearAll}
                         className="text-[#1D0129] flex items-center justify-center"
                       >
-                        <FunnelX className="w-4 h-4 cursor-pointer text-gray-400" />
+                        <FunnelX className="text-[16px]" style={{color:"rgba(29, 1, 41, 0.48)"}} />
                       </button>
                     </div>
 
@@ -404,67 +404,66 @@ export default function FilterBar({ onFiltersChange }) {
 
           {/* Checkbox Filter */}
           <div
-            className={`relative flex items-center justify-between gap-2 px-4 py-2 cursor-pointer border border-[#E3E3E3] ${
-              isOuvreProchainement
-                ? "bg-[#D31D74] text-white text-[16px] font-normal"
-                : "bg-white text-gray-800 text-[16px] font-normal"
-            } rounded-tl-lg rounded-br-lg w-full sm:w-auto`}
-            onClick={() => setIsOuvreProchainement(!isOuvreProchainement)}
-          >
-            <div
-              className={`w-6 h-6 flex items-center justify-center rounded-full ${
-                isOuvreProchainement ? "bg-[#D31D74]" : "bg-transparent"
-              }`}
-              style={{
-                backgroundColor: isOuvreProchainement
-                  ? "#D31D74"
-                  : "transparent",
-              }}
-            >
-              <Ouve
-                className={`w-4 h-4 ${
-                  isOuvreProchainement ? "text-white" : "text-gray-500"
-                }`}
-              />
-            </div>
+  className={`relative flex items-center gap-3 px-4 py-2 cursor-pointer border border-[#E3E3E3] ${
+    isOuvreProchainement
+      ? "bg-[#D31D74] text-white"
+      : "bg-white text-[#8B7E91]"
+  } rounded-tl-lg rounded-br-lg w-full sm:w-auto`}
+  onClick={() => setIsOuvreProchainement(!isOuvreProchainement)}
+>
+  {/* Ouve Icon */}
+  <div
+    className={`w-6 h-6 flex items-center justify-center rounded-full ${
+      isOuvreProchainement ? "bg-[#D31D74]" : "bg-transparent"
+    }`}
+  >
+    <Ouve
+      className={`w-[13.5px] h-[15px] ${
+        isOuvreProchainement ? "text-white" : "text-[#8B7E91]"
+      }`}
+    />
+  </div>
 
-            <span className="text-[16px] font-normal">
-              {isOuvreProchainement
-                ? "Ouvre prochainement"
-                : "Ouvre prochainement"}
-            </span>
+  {/* Text */}
+  <span className="text-[16px] text-gray-800 font-normal ">
+    Ouvre prochainement
+  </span>
 
-            <div className="relative">
-              <input
-                type="checkbox"
-                checked={isOuvreProchainement}
-                onChange={(e) => setIsOuvreProchainement(e.target.checked)}
-                className="w-4 h-4 rounded appearance-none focus:outline-none"
-                style={{
-                  WebkitAppearance: "none",
-                  MozAppearance: "none",
-                  appearance: "none",
-                  backgroundColor: isOuvreProchainement ? "#D31D74" : "#fff",
-                  border: `1px solid ${
-                    isOuvreProchainement ? "#ffffff" : "#ccc"
-                  }`,
-                }}
-              />
-              {isOuvreProchainement && (
-                <svg
-                  className="absolute top-0.5 left-0.5 w-3 h-3 pointer-events-none"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              )}
-            </div>
-          </div>
+  {/* Custom Checkbox */}
+  <div className="relative w-4 h-4 flex items-center justify-center">
+    <input
+      type="checkbox"
+      checked={isOuvreProchainement}
+      onChange={(e) => setIsOuvreProchainement(e.target.checked)}
+      className="w-full h-full rounded appearance-none focus:outline-none"
+      style={{
+        WebkitAppearance: "none",
+        MozAppearance: "none",
+        appearance: "none",
+        backgroundColor: isOuvreProchainement ? "#D31D74" : "#fff",
+        border: `1px solid ${
+          isOuvreProchainement ? "#ffffff" : "#ccc"
+        }`,
+      }}
+    />
+    {isOuvreProchainement && (
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <svg
+          className="w-3 h-3"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      </div>
+    )}
+  </div>
+</div>
+
         </div>
 
         {/* Add Button */}

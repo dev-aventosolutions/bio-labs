@@ -15,7 +15,6 @@ export default function LabCard({ lab: initialLab }) {
   const [openDetailDrawer, setOpenDetailDrawer] = useState(false);
   // const [toast, setToast] = useState({ show: false, message: "", type: "" });
   const [lab, setLab] = useState(initialLab);
-  console.log("lab", lab);
 
   // const showToast = (message, type = "success") => {
   //   setToast({ show: true, message, type });

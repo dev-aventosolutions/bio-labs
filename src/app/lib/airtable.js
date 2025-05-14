@@ -65,6 +65,7 @@ year:record.fields["Année d'ouverture"] || "",
 status: record.fields["Status"] || "Ouvert", 
 offer:record.fields["Type d'offre"] || "",
 ville:record.fields["Ville"] || "",
+address:record.fields["Address"] || "",
 
   }));
 };
@@ -131,6 +132,8 @@ export const fetchLabById = async (id) => {
     status: record.fields["Status"] || "Ouvert", 
     offer:record.fields["Type d'offre"] || "",
 ville:record.fields["Ville"] || "",
+address:record.fields["Address"] || "",
+
   };
 };
 

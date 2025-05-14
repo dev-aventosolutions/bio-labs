@@ -32,7 +32,7 @@ export default function Footer() {
           {/* Right: Contact and Copyright */}
           <div className="flex flex-col items-center md:items-end space-y-2 mt-4 md:mt-0">
           <a
-  href="mailto:xavier.duportrt@gmail.com"
+  href="mailto:xavier.duportet@gmail.com"
   className="inline-flex items-center space-x-1 cursor-pointer border-b border-[#878991] hover:opacity-75"
 >
   <Mail className="w-3 h-3 text-[#878991]" />
