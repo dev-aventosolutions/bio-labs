@@ -31,7 +31,8 @@
     "structure": "Type de structure",
     "noStructure": "Aucun type",
     "nooffer": "Aucune offre",
-    "offers": "Offres"
+    "offers": "Offres",
+    "noVille":"Aucune ville"
   },
   "labDetail": {
     "description": "Ceci est une description de l'espace laboratoire. Vous pouvez ajouter plus de détails ici.",

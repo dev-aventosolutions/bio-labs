@@ -7,7 +7,8 @@ import { useLanguage } from "../../lib/LanguageContext";
 import { useTranslation } from "../../lib/translate";
 import SectionWrapper from "../SectionWrapper";
 import { usePathname } from "next/navigation";
-import { ChevronDown } from "lucide-react";
+// import { ChevronDown } from "lucide-react";
+import {ChevronDown} from "../Icons"
 
 const languages = [
   {

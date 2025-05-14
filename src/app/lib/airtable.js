@@ -62,9 +62,10 @@ export const fetchLabSpaces = async () => {
     "Created on": record.fields["Created on"] || "",
     region: record.fields["Région"] || "",
 year:record.fields["Année d'ouverture"] || "",
-status: record.fields["Status"] || "Ouvert", // Default to "Ouvert" if not specified
+status: record.fields["Status"] || "Ouvert", 
 offer:record.fields["Type d'offre"] || "",
-    
+ville:record.fields["Ville"] || "",
+
   }));
 };
 
@@ -129,7 +130,7 @@ export const fetchLabById = async (id) => {
     year:record.fields["Année d'ouverture"] || "",
     status: record.fields["Status"] || "Ouvert", 
     offer:record.fields["Type d'offre"] || "",
-
+ville:record.fields["Ville"] || "",
   };
 };
 

@@ -3,6 +3,7 @@
 import { X, ArrowRight, Pencil, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import {Aller} from "./Icons"
 
 export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
   const [imageLoading, setImageLoading] = useState(true);
@@ -95,7 +96,11 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
                 <Pencil className="h-5 w-5 text-gray-600 dark:text-gray-600 cursor-pointer" />
               </button>
             </div>
-
+<p className="text-[#696A78] text-[13px] font-medium md:mb-6 mb-4">Le Biopark Paris 13 est un centre affaires spécialisé dans les sciences de la vie et les biotechnologies, situé au 
+cur du 13 arrondissement de Paris. Il propose des laboratoires et des bureaux modernes, conçus pour répondre
+aux besoins des entreprises innovantes du secteur. Avec ses infrastructures de qualité et son environnement
+collaboratif, le Biopark favorise la recherche, le développement et les synergies entre start-ups, PME et grands 
+groupes.</p>
             {/* Request Input */}
             <div className="flex gap-4 mb-10 items-center">
               <div className="flex-1 relative">
@@ -122,7 +127,7 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
                 className="bg-[#F1F1F1] text-[13px] text-[#000000] py-3 px-4 flex items-center justify-center space-x-2 transition-colors dark:bg-[#F1F1F1] dark:text-[#000000] font-semibold"
               >
                 <span>Alter</span>
-                <ArrowUpRight className="h-3 w-3 font-semibold" />
+                <Aller className="h-3 w-3 font-semibold" />
               </a>
             </div>
 
@@ -262,7 +267,7 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
                   {lab.services_communs_facility?.map((item, idx) => (
                     <div
                       key={idx}
-                      className="bg-gray-100 dark:bg-gray-800 rounded-full px-4 py-2"
+                      className="bg-gray-100 dark:bg-gray-100 rounded-full px-4 py-2"
                     >
                       <span className="text-[13px] text-[#696A78] dark:[#696A78]">
                         {item}

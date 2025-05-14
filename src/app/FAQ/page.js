@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchFAQs } from "../lib/airtable"; // adjust path if needed
+import { fetchFAQs } from "../lib/airtable"; 
 
 export default function FAQPage() {
   const [faqs, setFaqs] = useState([]);
