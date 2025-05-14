@@ -407,7 +407,7 @@ export default function FilterBar({ onFiltersChange }) {
   className={`relative flex items-center gap-3 px-4 py-2 cursor-pointer border border-[#E3E3E3] ${
     isOuvreProchainement
       ? "bg-[#D31D74] text-white"
-      : "bg-white text-[#8B7E91]"
+      : "bg-white text-gray-800"
   } rounded-tl-lg rounded-br-lg w-full sm:w-auto`}
   onClick={() => setIsOuvreProchainement(!isOuvreProchainement)}
 >
@@ -425,7 +425,7 @@ export default function FilterBar({ onFiltersChange }) {
   </div>
 
   {/* Text */}
-  <span className="text-[16px] text-gray-800 font-normal ">
+  <span className="text-[16px] font-normal leading-none">
     Ouvre prochainement
   </span>
 
