@@ -69,7 +69,7 @@ export default function HeroSection() {
         />
 
         {/* Text Overlay (same content) */}
-        <div className="absolute top-[40%] left-0 right-0">
+        <div className="absolute top-[20%] left-0 right-0">
           <SectionWrapper
             className="relative w-full"
             padding="py-0"
@@ -79,7 +79,7 @@ export default function HeroSection() {
             <div className="w-full text-white">
             <div className="max-w-[90%] ">
   {/* Title Line */}
-  <p className="font-black text-[20px] sm:text-[20px] md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[93.45px] leading-tight flex items-center flex-wrap">
+  <p className="font-black text-[40px] sm:text-[20px] md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[93.45px] leading-tight flex items-center flex-wrap">
     <span className="text-white">L</span>
 
     {/* Icon in the middle */}
@@ -97,7 +97,7 @@ export default function HeroSection() {
   </p>
 
   {/* Subtitle */}
-  <p className="text-white text-[10px] sm:text-[10px] md:text-lg lg:text-xl xl:text-2xl 2xl:text-[20.22px] mt-2 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
+  <p className="text-white text-[11px] sm:text-[10px] md:text-lg lg:text-xl xl:text-2xl 2xl:text-[20.22px] mt-2 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
     {t("hero.subtitle")}
   </p>
 </div>

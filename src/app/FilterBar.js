@@ -114,7 +114,10 @@ export default function FilterBar({ onFiltersChange }) {
               <div className="relative w-full md:w-[175px] lg:w-[175px] text-[16px] font-normal cursor-pointer">
                 <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
                   <div className="flex items-center space-x-2 flex-wrap gap-1">
-                    <MapPin  className="w-[12.52px] h-[15px] " style={{color:"rgba(29, 1, 41, 0.48)"}} />
+                    <MapPin
+                      className="w-[12.52px] h-[15px] "
+                      style={{ color: "rgba(29, 1, 41, 0.48)" }}
+                    />
                     <span className="text-left truncate flex items-center gap-1">
                       {t("filterBar.regions")}
                       {selectedRegions.length > 0 && (
@@ -166,38 +169,40 @@ export default function FilterBar({ onFiltersChange }) {
 
                     {/* Filtered Region Options with Checkboxes */}
                     {regions
-  .sort((a, b) => a.localeCompare(b)) // Sort alphabetically
-  .filter((region) =>
-    region.toLowerCase().includes(regionSearch.toLowerCase())
-  )
-  .map((region, i) => (
-    <li
-      key={i}
-      className="cursor-pointer text-[12px] select-none py-2 px-3 hover:bg-[#D31D74]/10 text-left flex items-center gap-2"
-      onClick={(e) => {
-        e.stopPropagation();
-        const alreadySelected = selectedRegions.includes(region);
-        if (alreadySelected) {
-          setSelectedRegions(
-            selectedRegions.filter((r) => r !== region)
-          );
-        } else {
-          setSelectedRegions([...selectedRegions, region]);
-        }
-      }}
-    >
-      <input
-        type="checkbox"
-        checked={selectedRegions.includes(region)}
-        readOnly
-        className="accent-[#D31D74]"
-      />
-      <span className="text-[12px] font-normal text-[#686A78]">
-        {region}
-      </span>
-    </li>
-  ))}
-
+                      .sort((a, b) => a.localeCompare(b)) // Sort alphabetically
+                      .filter((region) =>
+                        region
+                          .toLowerCase()
+                          .includes(regionSearch.toLowerCase())
+                      )
+                      .map((region, i) => (
+                        <li
+                          key={i}
+                          className="cursor-pointer text-[12px] select-none py-2 px-3 hover:bg-[#D31D74]/10 text-left flex items-center gap-2"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const alreadySelected =
+                              selectedRegions.includes(region);
+                            if (alreadySelected) {
+                              setSelectedRegions(
+                                selectedRegions.filter((r) => r !== region)
+                              );
+                            } else {
+                              setSelectedRegions([...selectedRegions, region]);
+                            }
+                          }}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedRegions.includes(region)}
+                            readOnly
+                            className="accent-[#D31D74]"
+                          />
+                          <span className="text-[12px] font-normal text-[#686A78]">
+                            {region}
+                          </span>
+                        </li>
+                      ))}
                   </Listbox.Options>
                 </AnimatePresence>
               </div>
@@ -210,7 +215,10 @@ export default function FilterBar({ onFiltersChange }) {
               <div className="relative w-full md:w-[175px] lg:w-[175px] text-[16px] font-normal cursor-pointer">
                 <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
                   <div className="flex items-center space-x-2 flex-wrap gap-1">
-                    <Labos className="w-[10.67px] h-[14.67px] " style={{color:"rgba(29, 1, 41, 0.48)"}} />
+                    <Labos
+                      className="w-[10.67px] h-[14.67px] text-gray-800 "
+                      
+                    />
                     <span className="text-left truncate flex items-center gap-1">
                       {t("filterBar.labos")}
                       {selectedLabos.length > 0 && (
@@ -255,44 +263,47 @@ export default function FilterBar({ onFiltersChange }) {
                         onClick={handleClearAll}
                         className="text-[#1D0129] flex items-center justify-center"
                       >
-                        <FunnelX className="w-4 h-4 cursor-pointer" style={{color:"rgba(29, 1, 41, 0.48)"}} />
+                        <FunnelX
+                          className="w-4 h-4 cursor-pointer"
+                          style={{ color: "rgba(29, 1, 41, 0.48)" }}
+                        />
                       </button>
                     </div>
 
                     {/* Filtered Labos with Checkboxes */}
                     {labos
-  .sort((a, b) => a.localeCompare(b)) // Sort alphabetically A–Z
-  .filter((labo) =>
-    labo.toLowerCase().includes(laboSearch.toLowerCase())
-  )
-  .map((labo, i) => (
-    <li
-      key={i}
-      className="cursor-pointer text-[12px] select-none py-2 px-3 hover:bg-[#D31D74]/10 text-left flex items-center gap-2"
-      onClick={(e) => {
-        e.stopPropagation();
-        const alreadySelected = selectedLabos.includes(labo);
-        if (alreadySelected) {
-          setSelectedLabos(
-            selectedLabos.filter((l) => l !== labo)
-          );
-        } else {
-          setSelectedLabos([...selectedLabos, labo]);
-        }
-      }}
-    >
-      <input
-        type="checkbox"
-        checked={selectedLabos.includes(labo)}
-        readOnly
-        className="accent-[#D31D74]"
-      />
-      <span className="text-[12px] font-normal text-[#686A78]">
-        {labo}
-      </span>
-    </li>
-  ))}
-
+                      .sort((a, b) => a.localeCompare(b)) // Sort alphabetically A–Z
+                      .filter((labo) =>
+                        labo.toLowerCase().includes(laboSearch.toLowerCase())
+                      )
+                      .map((labo, i) => (
+                        <li
+                          key={i}
+                          className="cursor-pointer text-[12px] select-none py-2 px-3 hover:bg-[#D31D74]/10 text-left flex items-center gap-2"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const alreadySelected =
+                              selectedLabos.includes(labo);
+                            if (alreadySelected) {
+                              setSelectedLabos(
+                                selectedLabos.filter((l) => l !== labo)
+                              );
+                            } else {
+                              setSelectedLabos([...selectedLabos, labo]);
+                            }
+                          }}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedLabos.includes(labo)}
+                            readOnly
+                            className="accent-[#D31D74]"
+                          />
+                          <span className="text-[12px] font-normal text-[#686A78]">
+                            {labo}
+                          </span>
+                        </li>
+                      ))}
                   </Listbox.Options>
                 </AnimatePresence>
               </div>
@@ -309,7 +320,10 @@ export default function FilterBar({ onFiltersChange }) {
               <div className="relative w-full md:w-[230px] lg:w-[230px] text-[16px] font-normal cursor-pointer">
                 <Listbox.Button className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer">
                   <div className="flex items-center space-x-2 flex-wrap gap-1">
-                    <Structure className="w-4 h-4" style={{color:"rgba(29, 1, 41, 0.48)"}} />
+                    <Structure
+                      className="w-4 h-4"
+                      style={{ color: "rgba(29, 1, 41, 0.48)" }}
+                    />
                     <span className="text-left truncate flex items-center gap-1">
                       {t("filterBar.structures")}
                       {selectedStructures.length > 0 && (
@@ -356,44 +370,54 @@ export default function FilterBar({ onFiltersChange }) {
                         onClick={handleClearAll}
                         className="text-[#1D0129] flex items-center justify-center"
                       >
-                        <FunnelX className="text-[16px]" style={{color:"rgba(29, 1, 41, 0.48)"}} />
+                        <FunnelX
+                          className="text-[16px]"
+                          style={{ color: "rgba(29, 1, 41, 0.48)" }}
+                        />
                       </button>
                     </div>
 
                     {/* Filtered Structures */}
                     {structures
-  .sort((a, b) => a.localeCompare(b)) // Alphabetical sort A-Z
-  .filter((structure) =>
-    structure.toLowerCase().includes(structureSearch.toLowerCase())
-  )
-  .map((structure, i) => (
-    <li
-      key={i}
-      className="cursor-pointer text-[12px] select-none py-2 px-3 hover:bg-[#D31D74]/10 text-left flex items-center gap-2"
-      onClick={(e) => {
-        e.stopPropagation();
-        const alreadySelected = selectedStructures.includes(structure);
-        if (alreadySelected) {
-          setSelectedStructures(
-            selectedStructures.filter((s) => s !== structure)
-          );
-        } else {
-          setSelectedStructures([...selectedStructures, structure]);
-        }
-      }}
-    >
-      <input
-        type="checkbox"
-        checked={selectedStructures.includes(structure)}
-        readOnly
-        className="accent-[#D31D74]"
-      />
-      <span className="text-[12px] font-normal text-[#686A78]">
-        {structure}
-      </span>
-    </li>
-  ))}
-
+                      .sort((a, b) => a.localeCompare(b)) // Alphabetical sort A-Z
+                      .filter((structure) =>
+                        structure
+                          .toLowerCase()
+                          .includes(structureSearch.toLowerCase())
+                      )
+                      .map((structure, i) => (
+                        <li
+                          key={i}
+                          className="cursor-pointer text-[12px] select-none py-2 px-3 hover:bg-[#D31D74]/10 text-left flex items-center gap-2"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const alreadySelected =
+                              selectedStructures.includes(structure);
+                            if (alreadySelected) {
+                              setSelectedStructures(
+                                selectedStructures.filter(
+                                  (s) => s !== structure
+                                )
+                              );
+                            } else {
+                              setSelectedStructures([
+                                ...selectedStructures,
+                                structure,
+                              ]);
+                            }
+                          }}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedStructures.includes(structure)}
+                            readOnly
+                            className="accent-[#D31D74]"
+                          />
+                          <span className="text-[12px] font-normal text-[#686A78]">
+                            {structure}
+                          </span>
+                        </li>
+                      ))}
                   </Listbox.Options>
                 </AnimatePresence>
               </div>
@@ -404,66 +428,71 @@ export default function FilterBar({ onFiltersChange }) {
 
           {/* Checkbox Filter */}
           <div
-  className={`relative flex items-center gap-3 px-4 py-2 cursor-pointer border border-[#E3E3E3] ${
-    isOuvreProchainement
-      ? "bg-[#D31D74] text-white"
-      : "bg-white text-gray-800"
-  } rounded-tl-lg rounded-br-lg w-full sm:w-auto`}
-  onClick={() => setIsOuvreProchainement(!isOuvreProchainement)}
+            className={`relative flex items-center gap-3 px-4 py-2 cursor-pointer border border-[#E3E3E3] ${
+              isOuvreProchainement
+                ? "bg-[#D31D74] text-white"
+                : "bg-white text-gray-800"
+            } rounded-tl-lg rounded-br-lg w-full sm:w-auto`}
+            onClick={() => setIsOuvreProchainement(!isOuvreProchainement)}
+          >
+            {/* Ouve Icon */}
+            <div
+  className={`w-6 h-6 flex items-center justify-center rounded-full ${
+    isOuvreProchainement ? "bg-[#D31D74]" : "bg-transparent"
+  }`}
 >
-  {/* Ouve Icon */}
-  <div
-    className={`w-6 h-6 flex items-center justify-center rounded-full ${
-      isOuvreProchainement ? "bg-[#D31D74]" : "bg-transparent"
+  <Ouve
+    className={`w-[13.5px] h-[15px] ${
+      isOuvreProchainement ? "text-white" : "text-[#8B7E91]"
     }`}
-  >
-    <Ouve
-      className={`w-[13.5px] h-[15px] ${
-        isOuvreProchainement ? "text-white" : "text-[#8B7E91]"
-      }`}
-    />
-  </div>
-
-  {/* Text */}
-  <span className="text-[16px] font-normal leading-none">
-    Ouvre prochainement
-  </span>
-
-  {/* Custom Checkbox */}
-  <div className="relative w-4 h-4 flex items-center justify-center">
-    <input
-      type="checkbox"
-      checked={isOuvreProchainement}
-      onChange={(e) => setIsOuvreProchainement(e.target.checked)}
-      className="w-full h-full rounded appearance-none focus:outline-none"
-      style={{
-        WebkitAppearance: "none",
-        MozAppearance: "none",
-        appearance: "none",
-        backgroundColor: isOuvreProchainement ? "#D31D74" : "#fff",
-        border: `1px solid ${
-          isOuvreProchainement ? "#ffffff" : "#ccc"
-        }`,
-      }}
-    />
-    {isOuvreProchainement && (
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <svg
-          className="w-3 h-3"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="white"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polyline points="20 6 9 17 4 12" />
-        </svg>
-      </div>
-    )}
-  </div>
+  />
 </div>
 
+
+            {/* Text - now explicitly controlled */}
+            <span
+  className={`text-[16px] font-normal leading-none ${
+    isOuvreProchainement ? "text-white" : "text-gray-800"
+  }`}
+>
+  Ouvre prochainement
+</span>
+
+
+            {/* Custom Checkbox (unchanged) */}
+            <div className="relative w-4 h-4 flex items-center justify-center">
+              <input
+                type="checkbox"
+                checked={isOuvreProchainement}
+                onChange={(e) => setIsOuvreProchainement(e.target.checked)}
+                className="w-full h-full rounded appearance-none focus:outline-none"
+                style={{
+                  WebkitAppearance: "none",
+                  MozAppearance: "none",
+                  appearance: "none",
+                  backgroundColor: isOuvreProchainement ? "#D31D74" : "#fff",
+                  border: `1px solid ${
+                    isOuvreProchainement ? "#ffffff" : "#ccc"
+                  }`,
+                }}
+              />
+              {isOuvreProchainement && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <svg
+                    className="w-3 h-3"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Add Button */}

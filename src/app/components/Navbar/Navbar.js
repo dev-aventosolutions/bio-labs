@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import SectionWrapper from "../SectionWrapper";
 import { useLanguage } from "../../lib/LanguageContext";
 import { useTranslation } from "../../lib/translate";
-import SectionWrapper from "../SectionWrapper";
-import { usePathname } from "next/navigation";
-// import { ChevronDown } from "lucide-react";
-import {ChevronDown} from "../Icons"
+import { ChevronDown } from "../Icons";
+import { Listbox } from "@headlessui/react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const languages = [
   {
@@ -24,29 +24,24 @@ const languages = [
 ];
 
 export default function Navbar() {
-  const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
   const { t } = useTranslation();
-  const pathname = usePathname(); // current route, like '/' or '/FAQ'
+  const pathname = usePathname();
 
   const currentLanguageObj =
     languages.find((lang) => lang.code === language) || languages[0];
 
-  const handleLanguageChange = (newLanguage) => {
-    setLanguage(newLanguage);
-    setLanguageDropdownOpen(false);
-  };
-
   return (
-    <header className="w-full border-b border-gray-200 dark:border-gray-200 bg-white dark:bg-white">
+    <header className="w-full border-b border-gray-200 bg-white">
       <SectionWrapper
-        padding="py-1 "
+        padding="py-1"
         className="flex justify-between items-center"
       >
-        <div className="flex  items-center">
+        {/* Links */}
+        <div className="flex items-center">
           <Link
             href="/"
-            className={`inline-flex items-center px-4  py-1 text-[#565656] text-[13px] hover:text-[#030303] hover:bg-gray-50 border-l border-r border-gray-200  ${
+            className={`inline-flex items-center px-4 py-1 text-[#565656] text-[13px] hover:text-[#030303] hover:bg-gray-50 border-l border-r border-gray-200 ${
               pathname === "/" ? "font-bold text-[#030303]" : ""
             }`}
           >
@@ -55,7 +50,7 @@ export default function Navbar() {
 
           <Link
             href="/FAQ"
-            className={`inline-flex items-center px-4  py-1 text-[#565656] text-[13px] hover:text-[#030303] hover:bg-gray-50  border-r border-gray-200 ${
+            className={`inline-flex items-center px-4 py-1 text-[#565656] text-[13px] hover:text-[#030303] hover:bg-gray-50 border-r border-gray-200 ${
               pathname === "/FAQ" ? "font-bold text-[#030303]" : ""
             }`}
           >
@@ -63,51 +58,67 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="relative">
-          <button
-            className="flex items-center space-x-2 text-sm"
-            onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
-            aria-label="Change language"
-            aria-expanded={languageDropdownOpen}
-          >
-            <Image
-              src={currentLanguageObj.flag}
-              width={24}
-              height={16}
-              alt={currentLanguageObj.name}
-              className="rounded-sm"
-              priority
-            />
-            <span className="text-gray-700 dark:text-gray-700">
-              {currentLanguageObj.code.toUpperCase()}
-            </span>
-            <ChevronDown className="text-gray-700 w-4 h-4 dark:text-gray-700" />{" "}
-            {/* Add the Lucide dropdown icon */}
-          </button>
-
-          {languageDropdownOpen && (
-            <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-white border border-gray-200 dark:border-gray-200 rounded-md shadow-lg z-50">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-100 text-gray-800 dark:text-gray-800"
-                  onClick={() => handleLanguageChange(lang.code)}
-                >
+        {/* Language Dropdown */}
+        <Listbox value={language} onChange={setLanguage}>
+          {({ open }) => (
+            <div className="relative w-[70px] text-sm font-normal cursor-pointer">
+              <Listbox.Button className="flex items-center justify-between w-full relative outline-none cursor-pointer">
+                <div className="flex items-center gap-2">
                   <Image
-                    src={lang.flag}
-                    width={24}
-                    height={16}
-                    alt={lang.name}
-                    className="rounded-sm"
+                    src={currentLanguageObj.flag}
+                    alt={currentLanguageObj.code}
+                    width={20}
+                    height={20}
+                    className=""
                   />
-                  <span className="text-gray-800 dark:text-gray-800">
-                    {lang.name}
+                  <span className="text-sm text-[#1D0129] font-medium">
+                    {currentLanguageObj.code.toUpperCase()}
                   </span>
-                </button>
-              ))}
+                </div>
+                <motion.div
+                  animate={{ rotate: open ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ChevronDown className="w-4 h-4 text-[#1D0129]" />
+                </motion.div>
+              </Listbox.Button>
+
+              <AnimatePresence>
+                {open && (
+                  <Listbox.Options
+                    as={motion.ul}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute right-1 mt-2 w-32 max-w-[90vw] bg-white shadow z-50 overflow-hidden outline-none"
+                  >
+                    {languages.map((lang) => (
+                      <Listbox.Option
+                        key={lang.code}
+                        value={lang.code}
+                        className={({ active }) =>
+                          `flex items-center gap-2 px-4 py-2 cursor-pointer text-sm ${
+                            active ? "bg-gray-100" : ""
+                          }`
+                        }
+                      >
+                        <Image
+                          src={lang.flag}
+                          alt={lang.code}
+                          width={20}
+                          height={20}
+                          className=""
+                        />
+                        <span className="text-[#1D0129]">{lang.name}</span>
+                      </Listbox.Option>
+                    ))}
+                  </Listbox.Options>
+                )}
+              </AnimatePresence>
             </div>
           )}
-        </div>
+        </Listbox>
       </SectionWrapper>
     </header>
   );
