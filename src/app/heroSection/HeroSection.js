@@ -30,7 +30,7 @@ export default function HeroSection() {
             <div className="max-w-[90%] md:max-w-[80%] lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[50%]">
   {/* Title Line */}
   <p className="font-black text-sm sm:text-[12px] md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[93.45px] leading-tight flex items-center flex-wrap">
-    <span className="text-white">L</span>
+    <span className="text-white">LAB</span>
 
     {/* Icon in the middle */}
     {/* <Image
@@ -40,9 +40,9 @@ export default function HeroSection() {
       height={40}
       className="w-[10px] sm:w-[12px] md:w-[40px] lg:w-[50px] xl:w-[60px] 2xl:w-[70px]"
     /> */}
-<BannerIcons width="65.01px" height="69.40px" />
+{/* <BannerIcons width="65.01px" height="69.40px" /> */}
 
-    <span className="text-white">B</span>
+    {/* <span className="text-white">B</span> */}
     <span className="font-light text-white">{t("hero.titlePart2")}</span>
   </p>
 
@@ -60,7 +60,7 @@ export default function HeroSection() {
       {/* Mobile Banner */}
       <div className="relative block md:hidden w-full">
         <Image
-          src="/mobilebanner.png" // for mobile screens
+          src="/betterlogo.png" // for mobile screens
           alt="Hero background mobile"
           width={720}
           height={400}
@@ -69,23 +69,23 @@ export default function HeroSection() {
         />
 
         {/* Text Overlay (same content) */}
-        <div className="absolute top-[20%] left-0 right-0">
+        <div className="absolute top-[21%] left-12 right-0">
           <SectionWrapper
             className="relative w-full"
             padding="py-0"
-            customLeftPadding="pl-4"
-            customRightPadding="pr-4"
+            customLeftPadding=""
+            customRightPadding=""
           >
             <div className="w-full text-white">
-            <div className="w-[90%] mx-auto">
-  <p className="font-black text-[40px] sm:text-[60px] md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[93.45px] leading-tight flex items-center flex-wrap">
-    <span className="text-white">L</span>
-    <BannerMobileIcons width="65.01px" height="69.40px" />
-    <span className="text-white">B</span>
+            <div className="max-w-[90%]">
+  <p className="font-black text-5xl sm:text-[60px] md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[93.45px] leading-tight flex items-center flex-wrap">
+    <span className="text-white">LAB</span>
+    {/* <BannerMobileIcons width="65.01px" height="69.40px" /> */}
+    {/* <span className="text-white">B</span> */}
     <span className="font-light text-white break-words">{t("hero.titlePart2")}</span>
   </p>
 
-  <p className="text-white text-[11px] sm:text-[13px] md:text-lg lg:text-xl xl:text-2xl 2xl:text-[20.22px] mt-2 max-w-full break-words">
+  <p className="text-white text-[14px] sm:text-[13px] md:text-lg lg:text-xl xl:text-2xl 2xl:text-[20.22px]  max-w-full break-words">
     {t("hero.subtitle")}
   </p>
 </div>

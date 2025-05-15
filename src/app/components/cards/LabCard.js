@@ -109,30 +109,22 @@ export default function LabCard({ lab: initialLab }) {
               {t("labCard.labos")}
             </p>
             <div className="flex flex-row gap-1 text-[12px] font-medium">
-              {["L1", "L2", "Animalerie"].map((label) => {
-                const isChecked = lab.labos && lab.labos.includes(label);
-                return (
-                  <div
-                    key={label}
-                    className="flex items-center gap-2 bg-[#ececec] text-[#656778] px-2 py-1"
-                  >
-                    {isChecked ? (
-                      <CheckSquare size={16} className="text-[#656778]" />
-                    ) : (
-                      <Square size={16} className="text-[#656778]" />
-                    )}
-                    <span
-                      className={
-                        isChecked
-                          ? "font-bold text-[#656778]"
-                          : "font-medium text-[#656778]"
-                      }
-                    >
-                      {label}
-                    </span>
-                  </div>
-                );
-              })}
+            {lab.labos && lab.labos.length > 0 ? (
+  lab.labos.map((label) => (
+    <div
+      key={label}
+      className="flex items-center gap-2 bg-[#ececec] text-[#656778] px-2 py-1"
+    >
+      <CheckSquare size={16} className="text-[#656778]" />
+      <span className="font-bold text-[#656778]">{label}</span>
+    </div>
+  ))
+) : (
+  <span className="px-2 py-1 text-[12px] font-medium text-[#656778] bg-[#ececec]">
+    {t("labCard.noLabos")}
+  </span>
+)}
+
             </div>
           </div>
 

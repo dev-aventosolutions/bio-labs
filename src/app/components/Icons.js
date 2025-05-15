@@ -145,7 +145,7 @@ export const BannerIcons = ({
 
 
   export const BannerMobileIcons = ({
-    className = "w-[25.01px] h-[32.40px]",
+    className = "w-[42.01px] h-[40.40px]",
     width = "60.01px",
     height = "47.40px",
   }) => (
