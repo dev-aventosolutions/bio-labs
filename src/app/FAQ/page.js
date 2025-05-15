@@ -39,10 +39,10 @@ export default function FAQPage() {
                   key={faq.id}
                   className="mb-8 pb-6 border-b border-gray-200"
                 >
-                  <h3 className="text-[20px] font-medium text-[#292929] mb-3">
+                  <h3 className="text-[20px] font-medium text-[#292929] mb-2">
                     {faq.question}
                   </h3>
-                  <p className="text-[#8d8f9a] text-[16px] font-normal">{faq.answer}</p>
+                  <p className="text-[#8d8f9a] text-[16px] font-normal ps-6">{faq.answer}</p>
                 </div>
               ))}
             </div>

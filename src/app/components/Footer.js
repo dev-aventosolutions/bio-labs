@@ -32,7 +32,7 @@ export default function Footer() {
             </a>
 
             <span className="text-[12px] text-[#a7a7aa] font-normal">
-              © 2025 LabSpaces. All rights reserved.
+              © 2025 LabSpaces. Made with ❤️ for the community by Xavier D.
             </span>
           </div>
         </div>
