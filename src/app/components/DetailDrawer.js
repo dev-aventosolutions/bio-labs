@@ -96,7 +96,7 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
                 <Pencil className="h-5 w-5 text-gray-600 dark:text-gray-600 cursor-pointer" />
               </button>
             </div>
-            <p className="text-[13px] font-normal mb-4" style={{ color: "rgba(105, 106, 120, 0.6)" }}><i>{lab.address}</i></p>
+            <p className="text-[13px] font-normal mb-4" style={{ color: "rgba(105, 106, 120, 0.6)" }}><i>{lab.address} - {lab.attachment}, {lab.ville} | {lab.region}</i></p>
             <p className="text-[#696A78] text-[13px] font-medium md:mb-6 mb-4">Le Biopark Paris 13 est un centre affaires spécialisé dans les sciences de la vie et les biotechnologies, situé au 
 cur du 13 arrondissement de Paris. Il propose des laboratoires et des bureaux modernes, conçus pour répondre
 aux besoins des entreprises innovantes du secteur. Avec ses infrastructures de qualité et son environnement

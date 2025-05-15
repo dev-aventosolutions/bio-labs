@@ -66,6 +66,8 @@ status: record.fields["Status"] || "Ouvert",
 offer:record.fields["Type d'offre"] || "",
 ville:record.fields["Ville"] || "",
 address:record.fields["Address"] || "",
+attachment:record.fields["Attachments"] || "",
+
 
   }));
 };
@@ -133,6 +135,7 @@ export const fetchLabById = async (id) => {
     offer:record.fields["Type d'offre"] || "",
 ville:record.fields["Ville"] || "",
 address:record.fields["Address"] || "",
+attachment:record.fields["Attachments"] || "",
 
   };
 };
