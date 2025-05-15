@@ -77,30 +77,19 @@ export default function HeroSection() {
             customRightPadding="pr-4"
           >
             <div className="w-full text-white">
-            <div className="max-w-[90%] ">
-  {/* Title Line */}
-  <p className="font-black text-[40px] sm:text-[20px] md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[93.45px] leading-tight flex items-center flex-wrap">
+            <div className="w-[90%] mx-auto">
+  <p className="font-black text-[40px] sm:text-[60px] md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[93.45px] leading-tight flex items-center flex-wrap">
     <span className="text-white">L</span>
-
-    {/* Icon in the middle */}
-    {/* <Image
-      src={bannerIcons} // 🔁 Replace this with the actual icon path
-      alt="Icon"
-      width={40}
-      height={40}
-      className="w-[10px] sm:w-[12px] md:w-[40px] lg:w-[50px] xl:w-[60px] 2xl:w-[70px]"
-    /> */}
-<BannerMobileIcons width="65.01px" height="69.40px" />
-
+    <BannerMobileIcons width="65.01px" height="69.40px" />
     <span className="text-white">B</span>
-    <span className="font-light text-white">{t("hero.titlePart2")}</span>
+    <span className="font-light text-white break-words">{t("hero.titlePart2")}</span>
   </p>
 
-  {/* Subtitle */}
-  <p className="text-white text-[11px] sm:text-[10px] md:text-lg lg:text-xl xl:text-2xl 2xl:text-[20.22px] mt-2 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
+  <p className="text-white text-[11px] sm:text-[13px] md:text-lg lg:text-xl xl:text-2xl 2xl:text-[20.22px] mt-2 max-w-full break-words">
     {t("hero.subtitle")}
   </p>
 </div>
+
             </div>
           </SectionWrapper>
         </div>

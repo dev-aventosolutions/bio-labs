@@ -168,7 +168,7 @@ export default function LabCard({ lab: initialLab }) {
                   const getStructureIcon = (type) => {
                     switch (type) {
                       case "Pépinière d'entreprise":
-                        return <Type1 size={14} />;
+                        return <Type4 size={14} />;
                       case "Accélérateur":
                         return <Type2 size={14} />;
                       case "Hotel d'entreprise":
@@ -179,7 +179,7 @@ export default function LabCard({ lab: initialLab }) {
                           </>
                         );
                       case "Incubateur":
-                        return <Type4 size={14} />;
+                        return <Type1 size={14} />;
                       default:
                         return null;
                     }
