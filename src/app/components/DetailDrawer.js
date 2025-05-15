@@ -97,11 +97,7 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
               </button>
             </div>
             <p className="text-[13px] font-normal mb-4" style={{ color: "rgba(105, 106, 120, 0.6)" }}><i>{lab.address} - {lab.attachment}, {lab.ville} | {lab.region}</i></p>
-            <p className="text-[#696A78] text-[13px] font-medium md:mb-6 mb-4">Le Biopark Paris 13 est un centre affaires spécialisé dans les sciences de la vie et les biotechnologies, situé au 
-cur du 13 arrondissement de Paris. Il propose des laboratoires et des bureaux modernes, conçus pour répondre
-aux besoins des entreprises innovantes du secteur. Avec ses infrastructures de qualité et son environnement
-collaboratif, le Biopark favorise la recherche, le développement et les synergies entre start-ups, PME et grands 
-groupes.</p>
+            <p className="text-[#696A78] text-[13px] font-medium md:mb-6 mb-4">{lab.description}</p>
             {/* Request Input */}
             <div className="flex gap-4 mb-10 items-center">
               <div className="flex-1 relative">
@@ -127,7 +123,7 @@ groupes.</p>
                 rel="noopener noreferrer"
                 className="bg-[#F1F1F1] text-[13px] text-[#000000] py-3 px-4 flex items-center justify-center space-x-2 transition-colors dark:bg-[#F1F1F1] dark:text-[#000000] font-semibold"
               >
-                <span>Alter</span>
+                <span>Aller</span>
                 <Aller className="h-3 w-3 font-semibold" />
               </a>
             </div>
@@ -178,16 +174,17 @@ groupes.</p>
                   Comment candidater
                 </h2>
                 <div className="flex flex-wrap gap-3">
-                  {lab.lab_de_structure?.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="border-2 border-gray-200 bg-gray-50 dark:bg-gray-50 dark:border-gray-200 px-2 "
-                    >
-                      <span className="text-[13px] font-semibold text-[#000000] dark:[#000000]">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
+                {/* <div className="flex flex-wrap gap-3"> */}
+  {lab.application && (
+    <div className="border-2 border-gray-200 bg-gray-50 dark:bg-gray-50 dark:border-gray-200 px-2 py-1">
+      <span className="text-[13px] font-semibold text-[#000000] dark:text-[#000000]">
+        {lab.application}
+      </span>
+    </div>
+  )}
+{/* </div> */}
+
+                  {/* {lab.application} */}
                 </div>
               </div>
 
@@ -197,16 +194,13 @@ groupes.</p>
                   Type d&rsquo;offre
                 </h2>
                 <div className="flex flex-wrap gap-3">
-                  {lab.lab_de_structure?.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="border-2 border-gray-200 bg-gray-50 dark:bg-gray-50 dark:border-gray-200 px-2"
-                    >
-                      <span className="text-[13px] font-semibold text-[#000000] dark:[#000000]">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
+                {lab.offer && (
+    <div className="border-2 border-gray-200 bg-gray-50 dark:bg-gray-50 dark:border-gray-200 px-2 py-1">
+      <span className="text-[13px] font-semibold text-[#000000] dark:text-[#000000]">
+        {lab.offer}
+      </span>
+    </div>
+  )}
                 </div>
               </div>
             </div>

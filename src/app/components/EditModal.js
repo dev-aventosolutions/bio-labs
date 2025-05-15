@@ -58,33 +58,30 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
       setIsLoading(true);
       setError("");
 
-      // Validate email domain
-      const inputDomain = email.split("@")[1];
-      const contactDomain = lab["Contact email"].split("@")[1];
+      // Get the expected domain from the lab's contact email
+      const expectedDomain = lab["Contact email"]?.split("@")[1] || "";
+      const inputDomain = email.split("@")[1] || "";
 
-      if (!inputDomain || !contactDomain || inputDomain !== contactDomain) {
-        setError(`Email domain must match ${contactDomain}`);
+      if (!inputDomain) {
+        setError("Please enter a valid email address");
         setIsLoading(false);
         return;
       }
 
-      // Check if email exists in Airtable
-      const emailExists = await checkEmailExists(email);
+      if (inputDomain !== expectedDomain) {
+        setError(`Email domain must match @${expectedDomain}`);
+        setIsLoading(false);
+        return;
+      }
 
-      if (emailExists) {
-        // Send verification email via EmailJS
-        const emailSent = await sendVerificationEmail();
+      // If we get here, domains match - send verification email
+      const emailSent = await sendVerificationEmail();
 
-        if (emailSent) {
-          showToast("Verification email sent. Please check your inbox.");
-          onClose();
-        } else {
-          showToast("Failed to send verification email", "error");
-        }
+      if (emailSent) {
+        showToast("Verification email sent. Please check your inbox.");
+        onClose();
       } else {
-        setError(
-          "Email not found in our system. Please use a registered email."
-        );
+        showToast("Failed to send verification email", "error");
       }
     } catch (error) {
       console.error("Update failed:", error);
@@ -123,23 +120,6 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
               </button>
             </div>
 
-            {/* <p className="text-sm text-[#696A78] dark:text-[#696A78] mb-4">
-              You are editing <strong>{lab.name}</strong>
-            </p> */}
-
-            {/* <div className="mb-4">
-              <label className="block text-sm text-[#696A78] dark:text-[#696A78] mb-1">
-                New Lab Name
-              </label>
-              <input
-                type="text"
-                className="w-full p-2 border border-gray-300 dark:border-gray-300 rounded bg-white dark:bg-white text-[#696A78] dark:text-[#696A78]"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </div> */}
-
             <div className="mb-4">
               <label className="block text-sm text-[#696A78] dark:text-[#696A78] mb-1">
                 Verify with Contact Email
@@ -149,10 +129,11 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
                 className="w-full p-2 border border-gray-300 dark:border-gray-300 rounded bg-white dark:bg-white text-[#696A78] dark:text-[#696A78]"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                placeholder={`user@${lab["Contact email"]?.split("@")[1] || "example.com"}`}
                 required
               />
               <p className="text-xs text-gray-500 mt-1">
-                Must match the email
+                Must match the email domain: @{lab["Contact email"]?.split("@")[1] || "example.com"}
               </p>
             </div>
 

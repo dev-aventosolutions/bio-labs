@@ -67,6 +67,8 @@ offer:record.fields["Type d'offre"] || "",
 ville:record.fields["Ville"] || "",
 address:record.fields["Address"] || "",
 attachment:record.fields["Attachments"] || "",
+application:record.fields["Type d'application"] || "",
+description:record.fields["Description"] || "",
 
 
   }));
@@ -136,6 +138,8 @@ export const fetchLabById = async (id) => {
 ville:record.fields["Ville"] || "",
 address:record.fields["Address"] || "",
 attachment:record.fields["Attachments"] || "",
+application:record.fields["Type d'application"] || "",
+description:record.fields["Description"] || "",
 
   };
 };
