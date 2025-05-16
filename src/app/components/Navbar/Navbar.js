@@ -41,8 +41,8 @@ export default function Navbar() {
         <div className="flex items-center">
           <Link
             href="/"
-            className={`inline-flex items-center px-4 py-1 text-[#565656] text-[13px] hover:text-[#030303] hover:bg-gray-50 border-l border-r border-gray-200 ${
-              pathname === "/" ? "font-bold text-[#030303]" : ""
+            className={`inline-flex items-center px-4 py-1 text-black text-[13px] hover:bg-gray-50 border-l border-r border-gray-200  ${
+              pathname === "/" ? "font-bold text-black" : ""
             }`}
           >
             {t("navbar.links")}
@@ -50,8 +50,8 @@ export default function Navbar() {
 
           <Link
             href="/FAQ"
-            className={`inline-flex items-center px-4 py-1 text-[#565656] text-[13px] hover:text-[#030303] hover:bg-gray-50 border-r border-gray-200 ${
-              pathname === "/FAQ" ? "font-bold text-[#030303]" : ""
+            className={`inline-flex items-center px-4 py-1 text-black text-[13px] hover:bg-gray-50 border-r border-gray-200 ${
+              pathname === "/FAQ" ? "font-bold text-black" : ""
             }`}
           >
             {t("navbar.faq")}
