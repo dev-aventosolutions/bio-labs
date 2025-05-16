@@ -33,8 +33,9 @@ export default function Footer() {
               </span>
             </a>
 
-            <span className="text-[12px] text-[#a7a7aa] font-normal">
-              ©️ 2025 LabSpaces. Made with ❤️ for the community by Xavier D.
+            <span className="text-[12px] text-[#a7a7aa] font-normal md:text-right block">
+            Made with ❤️ for the community by Xavier D. <br/>
+            ©️ 2025 LabSpaces.
             </span>
           </div>
         </div>
