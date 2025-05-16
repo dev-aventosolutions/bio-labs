@@ -39,7 +39,7 @@ export default function FAQPage() {
         key={faq.id}
         className="border-b border-gray-100 py-8" 
       >
-        <hp className="text-[20px] font-medium text-black leading-[28px] mb-1">
+        <hp className="text-[19px] font-medium text-black leading-[28px] mb-1">
           {faq.question}
         </hp>
         <p className="text-[#686A78]  leading-[24px] ps-6">
