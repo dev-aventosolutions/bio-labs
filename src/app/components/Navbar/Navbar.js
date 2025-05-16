@@ -32,7 +32,11 @@ export default function Navbar() {
     languages.find((lang) => lang.code === language) || languages[0];
 
   return (
-    <header className="w-full border-b border-gray-200 bg-white">
+<header
+  className={`w-full border-b border-gray-200 bg-white ${
+    pathname === "/FAQ" ? "md:px-12" : ""
+  }`}
+>
       <SectionWrapper
         padding="py-1"
         className="flex justify-between items-center"

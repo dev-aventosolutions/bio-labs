@@ -14,13 +14,13 @@ export default function FAQPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-white">
-      <SectionWrapper padding="py-12">
+    <div className="min-h-screen bg-white dark:bg-white md:px-12">
+      <SectionWrapper padding="md:py-12 py-4">
         <div className="flex flex-col md:flex-row">
           {/* Left Side */}
-          <div className="w-full md:w-1/14 pr-0 md:pr-0 mb-8 md:mb-0">
-            <div className="flex flex-col top-27 sticky items-center md:items-start">
-              {/* Logo Image */}
+          <div className="w-full md:w-1/14 pr-0 md:pr-0 mb-4 md:mb-0">
+          <div className="flex flex-col top-27 sticky items-start">
+          {/* Logo Image */}
               <Image
                 src={logo}
                 alt="LabSpaces Logo"
