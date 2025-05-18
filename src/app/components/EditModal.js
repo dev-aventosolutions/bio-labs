@@ -2,7 +2,7 @@
 
 import { X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { checkEmailExists } from "../lib/airtable";
+import { checkEmailExists, updateLabData } from "../lib/airtable";
 import Toast from "./Toast";
 import emailjs from "@emailjs/browser";
 
@@ -30,7 +30,7 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
 
   const sendVerificationEmail = async () => {
     try {
-      const expirationTime = Date.now() + 24 * 60 * 60 * 1000; 
+      const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
       const verificationLink = `${window.location.origin}/verify-lab-update?labId=${lab.id}&expires=${expirationTime}`;
 
       const templateParams = {
@@ -74,9 +74,13 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
         return;
       }
 
+      const updateData = {
+        edited_by : email,
+      };
+
       // If we get here, domains match - send verification email
       const emailSent = await sendVerificationEmail();
-
+      await updateLabData(lab.id, updateData);
       if (emailSent) {
         showToast("Verification email sent. Please check your inbox.");
         onClose();
@@ -129,11 +133,14 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
                 className="w-full p-2 border border-gray-300 dark:border-gray-300 rounded bg-white dark:bg-white text-[#696A78] dark:text-[#696A78]"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder={`user@${lab["Contact email"]?.split("@")[1] || "example.com"}`}
+                placeholder={`user@${
+                  lab["Contact email"]?.split("@")[1] || "example.com"
+                }`}
                 required
               />
               <p className="text-xs text-gray-500 mt-1">
-                Must match the email domain: @{lab["Contact email"]?.split("@")[1] || "example.com"}
+                Must match the email domain: @
+                {lab["Contact email"]?.split("@")[1] || "example.com"}
               </p>
             </div>
 

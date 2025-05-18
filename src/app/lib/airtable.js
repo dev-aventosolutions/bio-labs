@@ -38,11 +38,11 @@ export const fetchLabSpaces = async () => {
       ? [record.fields["Type de structure"]]
       : [],
     geocache: record.fields["Geocache"] || "",
-    surface_totale: record.fields["Surface totale (m2)"] || "N/A",
-    surface_min_totale: record.fields["Surface minimale de location"] || "N/A",
-    surface_max_totale: record.fields["Surface maximale de location"] || "N/A",
+    surface_totale: record.fields["Surface totale (m2)"] || "0",
+    surface_min_totale: record.fields["Surface minimale de location"] || "0",
+    surface_max_totale: record.fields["Surface maximale de location"] || "0",
     duree_max_totale:
-      record.fields["Durée maximale de location (en mois)"] || "N/A",
+      record.fields["Durée maximale de location (en mois)"] || "0",
     services_communs_techniques: Array.isArray(
       record.fields["Services Communs Techniques"]
     )
@@ -61,15 +61,18 @@ export const fetchLabSpaces = async () => {
     "Attachment Summary": record.fields["Attachment Summary"] || "",
     "Created on": record.fields["Created on"] || "",
     region: record.fields["Région"] || "",
-year:record.fields["Année d'ouverture"] || "",
-status: record.fields["Status"] || "Ouvert", 
-offer:record.fields["Type d'offre"] || "",
-ville:record.fields["Ville"] || "",
-address:record.fields["Address"] || "",
-attachment:record.fields["Attachments"] || "",
-application:record.fields["Type d'application"] || "",
-description:record.fields["Description"] || "",
-
+    year: record.fields["Année d'ouverture"] || "",
+    status: record.fields["Status"] || "Ouvert",
+    offer: record.fields["Type d'offre"] || "",
+    ville: record.fields["Ville"] || "",
+    address: record.fields["Address"] || "",
+    attachment: record.fields["Attachments"] || 0,
+    application: record.fields["Type d'application"] || "",
+    description: record.fields["Description"] || "",
+    quell:
+      record.fields["Quelle type de surfaces une startup peut elle louer?"] ||
+      "",
+      prix:record.fields["Prix"] || "",
 
   }));
 };
@@ -132,23 +135,24 @@ export const fetchLabById = async (id) => {
     "Attachment Summary": record.fields["Attachment Summary"] || "",
     "Created on": record.fields["Created on"] || "",
     region: record.fields["Région"] || "",
-    year:record.fields["Année d'ouverture"] || "",
-    status: record.fields["Status"] || "Ouvert", 
-    offer:record.fields["Type d'offre"] || "",
-ville:record.fields["Ville"] || "",
-address:record.fields["Address"] || "",
-attachment:record.fields["Attachments"] || "",
-application:record.fields["Type d'application"] || "",
-description:record.fields["Description"] || "",
+    year: record.fields["Année d'ouverture"] || "",
+    status: record.fields["Status"] || "Ouvert",
+    offer: record.fields["Type d'offre"] || "",
+    ville: record.fields["Ville"] || "",
+    address: record.fields["Address"] || "",
+    attachment: record.fields["Attachments"] || "",
+    application: record.fields["Type d'application"] || "",
+    description: record.fields["Description"] || "",
 
+    quell:
+      record.fields["Quelle type de surfaces une startup peut elle louer?"] ||
+      "",
+      prix:record.fields["Prix"] || "",
   };
 };
 
 // update
 export const updateLabData = async (id, updatedData) => {
-  console.log("Updating lab ID:", id);
-  console.log("Updated data:", updatedData);
-
   const response = await fetch(
     `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}/${id}`,
     {
