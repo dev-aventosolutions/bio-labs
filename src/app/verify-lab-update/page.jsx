@@ -107,54 +107,58 @@ function VerifyLab() {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsUpdating(true);
-    setError("");
-    let photoField = [];
-    
-    if (imageFile) {
-      photoField = [{ url: URL.createObjectURL(imageFile) }];
-    } else if (lab.imageUrl) {
-      photoField = [{ url: lab.imageUrl }];
-    }
+  // In VerifyLab component
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsUpdating(true);
+  setError("");
+  let photoField = [];
+  
+  if (imageFile) {
+    photoField = [{ url: URL.createObjectURL(imageFile) }];
+  } else if (lab.imageUrl) {
+    photoField = [{ url: lab.imageUrl }];
+  }
 
-    try {
-      const updatedFields = {
-        Name: lab?.name || "",
-        "Type de structure": lab?.lab_de_structure || [],
-        Labos: lab?.labos || [],
-        Geocache: lab?.geocache || "",
-        "Surface totale (m2)": Number(lab?.surface_totale) || "0",
-        "Surface minimale de location": Number(lab?.surface_min_totale) || "0",
-        "Surface maximale de location": Number(lab?.surface_max_totale) || "0",
-        "Durée maximale de location (en mois)": Number(lab?.duree_max_totale) || "0",
-        "Services Communs Techniques": lab?.services_communs_techniques || [],
-        "Services Communs Facility Management": lab?.services_communs_facility || [],
-        "Contact email": lab?.["Contact email"] || "",
-        "Attachment Summary": lab?.["Attachment Summary"] || "",
-        Région: lab?.region || "",
-        Status: lab?.status || "",
-        "Type d'offre": lab?.offer || "",
-        "Type d'application": lab?.application || [],
-        // Ville: lab?.ville || "",
-        Address: lab?.address || "",
-        Attachments: Number(lab?.attachment) || 0,
-        Description: lab?.description || "",
-        Photo: photoField,
-        Prix:lab?.prix,
-      };
+  try {
+    const searchParams = new URLSearchParams(window.location.search);
+    const email = searchParams.get("email"); // Get email from URL
 
-      await updateLabData(labId, updatedFields);
-      setSuccess(true);
-      setTimeout(() => router.push("/"), 2000);
-    } catch (err) {
-      console.error("Error updating lab:", err);
-      setError("Failed to update lab data");
-    } finally {
-      setIsUpdating(false);
-    }
-  };
+    const updatedFields = {
+      Name: lab?.name || "",
+      "Type de structure": lab?.lab_de_structure || [],
+      Labos: lab?.labos || [],
+      Geocache: lab?.geocache || "",
+      "Surface totale (m2)": Number(lab?.surface_totale) || "0",
+      "Surface minimale de location": Number(lab?.surface_min_totale) || "0",
+      "Surface maximale de location": Number(lab?.surface_max_totale) || "0",
+      "Durée maximale de location (en mois)": Number(lab?.duree_max_totale) || "0",
+      "Services Communs Techniques": lab?.services_communs_techniques || [],
+      "Services Communs Facility Management": lab?.services_communs_facility || [],
+      "Contact email": lab?.["Contact email"] || "",
+      "Attachment Summary": lab?.["Attachment Summary"] || "",
+      Région: lab?.region || "",
+      Status: lab?.status || "",
+      "Type d'offre": lab?.offer || "",
+      "Type d'application": lab?.application || [],
+      Address: lab?.address || "",
+      Attachments: Number(lab?.attachment) || 0,
+      Description: lab?.description || "",
+      Photo: photoField,
+      Prix: lab?.prix,
+      edited_by: email // Add the email here when actually updating
+    };
+
+    await updateLabData(labId, updatedFields);
+    setSuccess(true);
+    setTimeout(() => router.push("/"), 2000);
+  } catch (err) {
+    console.error("Error updating lab:", err);
+    setError("Failed to update lab data");
+  } finally {
+    setIsUpdating(false);
+  }
+};
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;

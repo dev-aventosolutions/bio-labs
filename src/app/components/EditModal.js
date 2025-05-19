@@ -28,72 +28,71 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
     setTimeout(() => setToast({ show: false, message: "", type: "" }), 3000);
   };
 
-  const sendVerificationEmail = async () => {
-    try {
-      const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
-      const verificationLink = `${window.location.origin}/verify-lab-update?labId=${lab.id}&expires=${expirationTime}`;
+ // In EditModal component
+const sendVerificationEmail = async () => {
+  try {
+    const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
+    const verificationLink = `${window.location.origin}/verify-lab-update?labId=${lab.id}&email=${encodeURIComponent(email)}&expires=${expirationTime}`;
 
-      const templateParams = {
-        to_email: email,
-        lab_name: lab.name || lab.Name,
-        contact_name: name,
-        verification_link: verificationLink,
-      };
+    const templateParams = {
+      to_email: email,
+      lab_name: lab.name || lab.Name,
+      contact_name: name,
+      verification_link: verificationLink,
+    };
 
-      const response = await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-        templateParams
-      );
+    const response = await emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+      templateParams
+    );
 
-      return response.status === 200;
-    } catch (error) {
-      console.error("Failed to send email:", error);
-      return false;
-    }
-  };
+    return response.status === 200;
+  } catch (error) {
+    console.error("Failed to send email:", error);
+    return false;
+  }
+};
 
-  const handleUpdate = async () => {
-    try {
-      setIsLoading(true);
-      setError("");
+  // In EditModal component
+const handleUpdate = async () => {
+  try {
+    setIsLoading(true);
+    setError("");
 
-      // Get the expected domain from the lab's contact email
-      const expectedDomain = lab["Contact email"]?.split("@")[1] || "";
-      const inputDomain = email.split("@")[1] || "";
+    // Get the expected domain from the lab's contact email
+    const expectedDomain = lab["Contact email"]?.split("@")[1] || "";
+    const inputDomain = email.split("@")[1] || "";
 
-      if (!inputDomain) {
-        setError("Please enter a valid email address");
-        setIsLoading(false);
-        return;
-      }
-
-      if (inputDomain !== expectedDomain) {
-        setError(`Email domain must match @${expectedDomain}`);
-        setIsLoading(false);
-        return;
-      }
-
-      const updateData = {
-        edited_by : email,
-      };
-
-      // If we get here, domains match - send verification email
-      const emailSent = await sendVerificationEmail();
-      await updateLabData(lab.id, updateData);
-      if (emailSent) {
-        showToast("Verification email sent. Please check your inbox.");
-        onClose();
-      } else {
-        showToast("Failed to send verification email", "error");
-      }
-    } catch (error) {
-      console.error("Update failed:", error);
-      showToast("An error occurred. Please try again.", "error");
-    } finally {
+    if (!inputDomain) {
+      setError("Please enter a valid email address");
       setIsLoading(false);
+      return;
     }
-  };
+
+    if (inputDomain !== expectedDomain) {
+      setError(`Email domain must match @${expectedDomain}`);
+      setIsLoading(false);
+      return;
+    }
+
+    // Remove the updateLabData call from here
+    // Just send verification email
+    const emailSent = await sendVerificationEmail();
+    
+    if (emailSent) {
+      showToast("Verification email sent. Please check your inbox.");
+      onClose();
+    } else {
+      showToast("Failed to send verification email", "error");
+    }
+  } catch (error) {
+    console.error("Update failed:", error);
+    showToast("An error occurred. Please try again.", "error");
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   if (!isOpen) return null;
 
