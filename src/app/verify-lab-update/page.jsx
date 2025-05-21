@@ -119,6 +119,18 @@ const handleSubmit = async (e) => {
   } else if (lab.imageUrl) {
     photoField = [{ url: lab.imageUrl }];
   }
+  // In VerifyLab component
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsUpdating(true);
+  setError("");
+  let photoField = [];
+  
+  if (imageFile) {
+    photoField = [{ url: URL.createObjectURL(imageFile) }];
+  } else if (lab.imageUrl) {
+    photoField = [{ url: lab.imageUrl }];
+  }
 
   try {
     const searchParams = new URLSearchParams(window.location.search);
@@ -149,6 +161,16 @@ const handleSubmit = async (e) => {
       // edited_by: email 
     };
 
+    await updateLabData(labId, updatedFields);
+    setSuccess(true);
+    setTimeout(() => router.push("/"), 2000);
+  } catch (err) {
+    console.error("Error updating lab:", err);
+    setError("Failed to update lab data");
+  } finally {
+    setIsUpdating(false);
+  }
+};
     await updateLabData(labId, updatedFields);
     setSuccess(true);
     setTimeout(() => router.push("/"), 2000);

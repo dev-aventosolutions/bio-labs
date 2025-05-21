@@ -6,7 +6,7 @@ import logo from "../../../public/lablogo.png"; // Ensure path is correct
 
 export default function Footer() {
   return (
-    <footer className="pt-40 pb-4 bg-white text-[#1D0129]">
+    <footer className=" pb-10 bg-white text-[#1D0129]">
       <SectionWrapper className="w-full">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left space-y-4 md:space-y-0">
           
