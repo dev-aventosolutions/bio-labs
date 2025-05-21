@@ -58,7 +58,7 @@ export const fetchLabSpaces = async () => {
       ? [record.fields["Services Communs Facility Management"]]
       : [],
     "Contact email": record.fields["Contact email"] || "",
-    "Attachment Summary": record.fields["Attachment Summary"] || "",
+    // "Attachment Summary": record.fields["Attachment Summary"] || "",
     "Created on": record.fields["Created on"] || "",
     region: record.fields["Région"] || "",
     year: record.fields["Année d'ouverture"] || "",
@@ -66,13 +66,14 @@ export const fetchLabSpaces = async () => {
     offer: record.fields["Type d'offre"] || "",
     ville: record.fields["Ville"] || "",
     address: record.fields["Address"] || "",
-    attachment: record.fields["Attachments"] || 0,
+    // attachment: record.fields["Attachments"] || 0,
     application: record.fields["Type d'application"] || "",
     description: record.fields["Description"] || "",
     quell:
       record.fields["Quelle type de surfaces une startup peut elle louer?"] ||
       "",
       prix:record.fields["Prix"] || "",
+      siteWeb:record.fields["Site web"] || "",
 
   }));
 };
@@ -132,7 +133,7 @@ export const fetchLabById = async (id) => {
       ? [record.fields["Services Communs Facility Management"]]
       : [],
     "Contact email": record.fields["Contact email"] || "",
-    "Attachment Summary": record.fields["Attachment Summary"] || "",
+    // "Attachment Summary": record.fields["Attachment Summary"] || "",
     "Created on": record.fields["Created on"] || "",
     region: record.fields["Région"] || "",
     year: record.fields["Année d'ouverture"] || "",
@@ -140,7 +141,7 @@ export const fetchLabById = async (id) => {
     offer: record.fields["Type d'offre"] || "",
     ville: record.fields["Ville"] || "",
     address: record.fields["Address"] || "",
-    attachment: record.fields["Attachments"] || "",
+    // attachment: record.fields["Attachments"] || "",
     application: record.fields["Type d'application"] || "",
     description: record.fields["Description"] || "",
 
@@ -148,6 +149,8 @@ export const fetchLabById = async (id) => {
       record.fields["Quelle type de surfaces une startup peut elle louer?"] ||
       "",
       prix:record.fields["Prix"] || "",
+            siteWeb:record.fields["Site web"] || "",
+
   };
 };
 

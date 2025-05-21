@@ -3,7 +3,7 @@ import React from "react";
 export default function SectionWrapper({
   children,
   className = "",
-  padding = "py-4 md:py-6",
+  padding = "pt-4 md:pt-4",
   disablePadding = false,
   customRightPadding = "",
   customLeftPadding = "",

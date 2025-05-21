@@ -18,21 +18,20 @@ export default function FAQPage() {
       <SectionWrapper padding="md:py-12 py-4">
         <div className="flex flex-col md:flex-row">
           {/* Left Side - Logo + FAQ Title */}
-          <div className="md:w-[200px] flex-shrink-0 mb-6 md:mb-0">
+          <div className="md:w-[100px] flex-shrink-0 mb-6 md:mb-0">
             {/* Mobile Header */}
             <div className="md:hidden flex items-center gap-4">
               <Image
                 src={logo}
                 alt="LabSpaces Logo"
-                width={60}
-                height={60}
+                width={70}
+                height={70}
                 className="object-contain"
               />
-              <p className="text-2xl font-bold text-black">FAQ</p>
             </div>
 
             {/* Desktop Header */}
-            <div className="hidden md:flex items-center gap-4 sticky top-6">
+            <div className="hidden md:flex items-center gap-4 sticky top-12">
               <Image
                 src={logo}
                 alt="LabSpaces Logo"
@@ -40,7 +39,6 @@ export default function FAQPage() {
                 height={80}
                 className="object-contain"
               />
-              <p className="text-[40px] font-bold text-black">FAQ</p>
             </div>
           </div>
 
@@ -48,7 +46,7 @@ export default function FAQPage() {
           <div className="flex-1 md:pl-8">
             <div className="bg-white">
               {faqs.map((faq) => (
-                <div key={faq.id} className="border-b border-gray-100 py-8">
+                <div key={faq.id} className="border-b border-gray-100 py-4">
                   <p className="text-[19px] font-medium text-black leading-[28px] mb-1">
                     {faq.question}
                   </p>

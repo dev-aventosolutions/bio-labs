@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import {Aller} from "./Icons"
 
 export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
+  console.log("lab detail",lab)
   const [imageLoading, setImageLoading] = useState(true);
 
   useEffect(() => {
@@ -41,9 +42,9 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
           ${isOpen ? "translate-x-0" : "translate-x-full"}
         `}
       >
-        <div className="p-6 md:p-8">
+        <div className="p-6 md:pb-6 md:pt-2 md:px-8">
           {/* Close Button - Fixed in top right corner */}
-          <div className="flex justify-end mb-4">
+          <div className="flex justify-end mb-2">
             <button
               onClick={onClose}
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-100transition-colors cursor-pointer"

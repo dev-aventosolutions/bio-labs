@@ -18,7 +18,6 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
       setName(lab.Name || lab.name || "");
       setEmail("");
       setError("");
-      // Initialize EmailJS (you only need to do this once)
       emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
     }
   }, [isOpen, lab]);
@@ -26,6 +25,27 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
   const showToast = (message, type = "success") => {
     setToast({ show: true, message, type });
     setTimeout(() => setToast({ show: false, message: "", type: "" }), 3000);
+  };
+
+  // Function to extract domain from URL
+  const extractDomainFromUrl = (url) => {
+    if (!url) return null;
+    
+    try {
+      // Add https:// if not present to make it a valid URL
+      let formattedUrl = url;
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        formattedUrl = `https://${url}`;
+      }
+      
+      const domain = new URL(formattedUrl).hostname;
+      
+      // Remove www. if present and return the main domain
+      return domain.replace(/^www\./, '');
+    } catch (e) {
+      console.error("Error parsing URL:", e);
+      return null;
+    }
   };
 
   const sendVerificationEmail = async () => {
@@ -58,8 +78,8 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
       setIsLoading(true);
       setError("");
 
-      // Get the expected domain from the lab's contact email
-      const expectedDomain = lab["Contact email"]?.split("@")[1] || "";
+      // Get the domain from the lab's website URL
+      const websiteDomain = extractDomainFromUrl(lab.siteWeb || lab["Site web"]);
       const inputDomain = email.split("@")[1] || "";
 
       if (!inputDomain) {
@@ -68,14 +88,20 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
         return;
       }
 
-      if (inputDomain !== expectedDomain) {
-        setError(`Email domain must match @${expectedDomain}`);
+      if (!websiteDomain) {
+        setError("This lab doesn't have a valid website URL for verification");
+        setIsLoading(false);
+        return;
+      }
+
+      if (inputDomain !== websiteDomain) {
+        setError(`Email domain must match the lab's website domain (@${websiteDomain})`);
         setIsLoading(false);
         return;
       }
 
       const updateData = {
-        edited_by : email,
+        edited_by: email,
       };
 
       // If we get here, domains match - send verification email
@@ -96,6 +122,9 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
   };
 
   if (!isOpen) return null;
+
+  // Get the website domain for the hint text
+  const websiteDomain = extractDomainFromUrl(lab.siteWeb || lab["Site web"]);
 
   return (
     <>
@@ -126,22 +155,21 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
 
             <div className="mb-4">
               <label className="block text-sm text-[#696A78] dark:text-[#696A78] mb-1">
-                Verify with Contact Email
+                Verify with Email (must match lab's website domain)
               </label>
               <input
                 type="email"
                 className="w-full p-2 border border-gray-300 dark:border-gray-300 rounded bg-white dark:bg-white text-[#696A78] dark:text-[#696A78]"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder={`user@${
-                  lab["Contact email"]?.split("@")[1] || "example.com"
-                }`}
+                placeholder={websiteDomain ? `user@${websiteDomain}` : "Enter email"}
                 required
               />
-              <p className="text-xs text-gray-500 mt-1">
-                Must match the email domain: @
-                {lab["Contact email"]?.split("@")[1] || "example.com"}
-              </p>
+              {websiteDomain && (
+                <p className="text-xs text-gray-500 mt-1">
+                  Must match the lab's website domain: @{websiteDomain}
+                </p>
+              )}
             </div>
 
             {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
@@ -149,7 +177,7 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
             <button
               className="w-full cursor-pointer bg-[#a60383] text-white py-2 px-4 rounded hover:bg-[#a60383] flex items-center justify-center dark:bg-[#a60383] dark:hover:bg-[#a60383]"
               onClick={handleUpdate}
-              disabled={isLoading}
+              disabled={isLoading || !websiteDomain}
             >
               {isLoading ? (
                 <>
@@ -179,6 +207,12 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
                 "Verify and Update"
               )}
             </button>
+
+            {!websiteDomain && (
+              <p className="text-red-500 text-sm mt-2">
+                This lab cannot be edited because it doesn't have a valid website URL.
+              </p>
+            )}
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@ export default function Footer() {
             >
               <Mail className="w-3 h-3 text-[#878991]" />
               <span className="text-[14px] font-normal text-[#878991]">
-                Contact Us
+                Contact me
               </span>
             </a>
 
