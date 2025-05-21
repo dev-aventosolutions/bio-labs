@@ -155,7 +155,7 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
 
             <div className="mb-4">
               <label className="block text-sm text-[#696A78] dark:text-[#696A78] mb-1">
-                Verify with Email (must match lab's website domain)
+                Verify with Email 
               </label>
               <input
                 type="email"
@@ -167,7 +167,7 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
               />
               {websiteDomain && (
                 <p className="text-xs text-gray-500 mt-1">
-                  Must match the lab's website domain: @{websiteDomain}
+                  Must match the lab website domain: @{websiteDomain}
                 </p>
               )}
             </div>
@@ -210,7 +210,7 @@ export default function EditModal({ isOpen, onClose, lab, onUpdateSuccess }) {
 
             {!websiteDomain && (
               <p className="text-red-500 text-sm mt-2">
-                This lab cannot be edited because it doesn't have a valid website URL.
+                This lab cannot be edited because it does not have a valid website URL.
               </p>
             )}
           </div>

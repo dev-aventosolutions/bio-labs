@@ -119,18 +119,6 @@ const handleSubmit = async (e) => {
   } else if (lab.imageUrl) {
     photoField = [{ url: lab.imageUrl }];
   }
-  // In VerifyLab component
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setIsUpdating(true);
-  setError("");
-  let photoField = [];
-  
-  if (imageFile) {
-    photoField = [{ url: URL.createObjectURL(imageFile) }];
-  } else if (lab.imageUrl) {
-    photoField = [{ url: lab.imageUrl }];
-  }
 
   try {
     const searchParams = new URLSearchParams(window.location.search);
@@ -147,30 +135,13 @@ const handleSubmit = async (e) => {
       "Durée maximale de location (en mois)": Number(lab?.duree_max_totale) || "0",
       "Services Communs Techniques": lab?.services_communs_techniques || [],
       "Services Communs Facility Management": lab?.services_communs_facility || [],
-      // "Contact email": lab?.["Contact email"] || "",
-      // "Attachment Summary": lab?.["Attachment Summary"] || "",
       Région: lab?.region || "",
       Status: lab?.status || "",
-      // "Type d'offre": lab?.offer || "", --todo
       "Type d'application": lab?.application || [],
       Address: lab?.address || "",
-      // Attachments: Number(lab?.attachment) || 0,
       Description: lab?.description || "",
-      // Photo: photoField,
-      // Prix: lab?.prix,
-      // edited_by: email 
     };
 
-    await updateLabData(labId, updatedFields);
-    setSuccess(true);
-    setTimeout(() => router.push("/"), 2000);
-  } catch (err) {
-    console.error("Error updating lab:", err);
-    setError("Failed to update lab data");
-  } finally {
-    setIsUpdating(false);
-  }
-};
     await updateLabData(labId, updatedFields);
     setSuccess(true);
     setTimeout(() => router.push("/"), 2000);
