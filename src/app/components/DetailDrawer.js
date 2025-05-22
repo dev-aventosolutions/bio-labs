@@ -217,19 +217,19 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
                 </h2>
                 <div className="space-y-3">
                   <p className="text-[13px] text-[#696A78] dark:[#696A78] font-medium">
-                    <span className="font-bold">Surface totale:</span>{" "}
+                    <span className="font-bold">Surface totale : </span>{" "}
                     {lab.surface_totale} m²
                   </p>
                   <p className="text-[13px] text-[#696A78] dark:[#696A78]">
-                    <span className="font-bold">Surface minimale de location:</span>{" "}
+                    <span className="font-bold">Surface min de location : </span>{" "}
                     {lab.surface_min_totale} m²
                   </p>
                   <p className="text-[13px] text-[#696A78] dark:[#696A78]">
-                    <span className="font-bold">Surface minimale de location:</span>{" "}
+                    <span className="font-bold">Surface max de location : </span>{" "}
                     {lab.surface_max_totale} m²
                   </p>
                   <p className="text-[13px] text-[#696A78] dark:[#696A78] ">
-                    <span className="font-bold">Durée max de location:</span>{" "}
+                    <span className="font-bold">Durée max de location : </span>{" "}
                     {lab.duree_max_totale} mois
                   </p>
                 </div>
