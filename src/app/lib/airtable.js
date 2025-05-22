@@ -27,10 +27,10 @@ export const fetchLabSpaces = async () => {
     services: record.fields["Services"] || ["No services listed"],
     openingSoon: record.fields["OpeningSoon"] || false,
     notes: record.fields["Notes"] || "",
-    labos: Array.isArray(record.fields["Labos"])
-      ? record.fields["Labos"]
-      : record.fields["Labos"]
-      ? [record.fields["Labos"]]
+    labos: Array.isArray(record.fields["Type de laboratoire à la location"])
+      ? record.fields["Type de laboratoire à la location"]
+      : record.fields["Type de laboratoire à la location"]
+      ? [record.fields["Type de laboratoire à la location"]]
       : [],
     lab_de_structure: Array.isArray(record.fields["Type de structure"])
       ? record.fields["Type de structure"]
@@ -43,19 +43,19 @@ export const fetchLabSpaces = async () => {
     surface_max_totale: record.fields["Surface maximale de location"] || "0",
     duree_max_totale:
       record.fields["Durée maximale de location (en mois)"] || "0",
-    services_communs_techniques: Array.isArray(
-      record.fields["Services Communs Techniques"]
+    "Services techniques communs": Array.isArray(
+      record.fields["Services techniques communs"]
     )
-      ? record.fields["Services Communs Techniques"]
-      : record.fields["Services Communs Techniques"]
-      ? [record.fields["Services Communs Techniques"]]
+      ? record.fields["Services techniques communs"]
+      : record.fields["Services techniques communs"]
+      ? [record.fields["Services techniques communs"]]
       : [],
-    services_communs_facility: Array.isArray(
-      record.fields["Services Communs Facility Management"]
+    "Services Généraux": Array.isArray(
+      record.fields["Services Généraux"]
     )
-      ? record.fields["Services Communs Facility Management"]
-      : record.fields["Services Communs Facility Management"]
-      ? [record.fields["Services Communs Facility Management"]]
+      ? record.fields["Services Généraux"]
+      : record.fields["Services Généraux"]
+      ? [record.fields["Services Généraux"]]
       : [],
     "Contact email": record.fields["Contact email"] || "",
     // "Attachment Summary": record.fields["Attachment Summary"] || "",
@@ -67,13 +67,16 @@ export const fetchLabSpaces = async () => {
     ville: record.fields["Ville"] || "",
     address: record.fields["Address"] || "",
     // attachment: record.fields["Attachments"] || 0,
-    application: record.fields["Type d'application"] || "",
+    application: record.fields["Comment candidater"] || "",
     description: record.fields["Description"] || "",
     quell:
       record.fields["Quelle type de surfaces une startup peut elle louer?"] ||
       "",
       prix:record.fields["Prix"] || "",
       siteWeb:record.fields["Site web"] || "",
+      "Code postal":record.fields["Code postal"] || 0,
+      "Année d'ouverture":record.fields["Année d'ouverture"] || 0
+
 
   }));
 };
@@ -102,10 +105,10 @@ export const fetchLabById = async (id) => {
     services: record.fields["Services"] || ["No services listed"],
     openingSoon: record.fields["OpeningSoon"] || false,
     notes: record.fields["Notes"] || "",
-    labos: Array.isArray(record.fields["Labos"])
-      ? record.fields["Labos"]
-      : record.fields["Labos"]
-      ? [record.fields["Labos"]]
+    labos: Array.isArray(record.fields["Type de laboratoire à la location"])
+      ? record.fields["Type de laboratoire à la location"]
+      : record.fields["Type de laboratoire à la location"]
+      ? [record.fields["Type de laboratoire à la location"]]
       : [],
     lab_de_structure: Array.isArray(record.fields["Type de structure"])
       ? record.fields["Type de structure"]
@@ -118,19 +121,19 @@ export const fetchLabById = async (id) => {
     surface_max_totale: record.fields["Surface maximale de location"] || "N/A",
     duree_max_totale:
       record.fields["Durée maximale de location (en mois)"] || "N/A",
-    services_communs_techniques: Array.isArray(
-      record.fields["Services Communs Techniques"]
+    "Services techniques communs": Array.isArray(
+      record.fields["Services techniques communs"]
     )
-      ? record.fields["Services Communs Techniques"]
-      : record.fields["Services Communs Techniques"]
-      ? [record.fields["Services Communs Techniques"]]
+      ? record.fields["Services techniques communs"]
+      : record.fields["Services techniques communs"]
+      ? [record.fields["Services techniques communs"]]
       : [],
-    services_communs_facility: Array.isArray(
-      record.fields["Services Communs Facility Management"]
+    "Services Généraux": Array.isArray(
+      record.fields["Services Généraux"]
     )
-      ? record.fields["Services Communs Facility Management"]
-      : record.fields["Services Communs Facility Management"]
-      ? [record.fields["Services Communs Facility Management"]]
+      ? record.fields["Services Généraux"]
+      : record.fields["Services Généraux"]
+      ? [record.fields["Services Généraux"]]
       : [],
     "Contact email": record.fields["Contact email"] || "",
     // "Attachment Summary": record.fields["Attachment Summary"] || "",
@@ -142,7 +145,7 @@ export const fetchLabById = async (id) => {
     ville: record.fields["Ville"] || "",
     address: record.fields["Address"] || "",
     // attachment: record.fields["Attachments"] || "",
-    application: record.fields["Type d'application"] || "",
+    application: record.fields["Comment candidater"] || "",
     description: record.fields["Description"] || "",
 
     quell:
@@ -150,6 +153,8 @@ export const fetchLabById = async (id) => {
       "",
       prix:record.fields["Prix"] || "",
             siteWeb:record.fields["Site web"] || "",
+                  "Code postal":record.fields["Code postal"] || 0,
+"Année d'ouverture":record.fields["Année d'ouverture"] || 0
 
   };
 };

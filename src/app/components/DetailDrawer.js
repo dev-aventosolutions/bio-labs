@@ -42,14 +42,14 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
           ${isOpen ? "translate-x-0" : "translate-x-full"}
         `}
       >
-        <div className="p-6 md:pb-6 md:pt-2 md:px-8">
+        <div className="p-6 md:pb-6 md:pt-0 md:px-8">
           {/* Close Button - Fixed in top right corner */}
-          <div className="flex justify-end mb-2">
+          <div className="flex justify-end ">
             <button
               onClick={onClose}
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-100transition-colors cursor-pointer"
             >
-              <X className="h-6 w-6 text-gray-600 dark:text-gray-600 cursor-pointer" />
+              <X className="h-5 w-5 text-gray-600 dark:text-gray-600 cursor-pointer" />
             </button>
           </div>
 
@@ -97,20 +97,20 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
                 <Pencil className="h-5 w-5 text-gray-600 dark:text-gray-600 cursor-pointer" />
               </button>
             </div>
-            <p className="text-[13px] font-normal mb-4" style={{ color: "rgba(105, 106, 120, 0.6)" }}><i>{lab.address} - {lab.attachment}, {lab.ville} | {lab.region}</i></p>
+            <p className="text-[13px] font-normal mb-4" style={{ color: "rgba(105, 106, 120, 0.6)" }}><i>{lab.address} - {lab["Code postal"]}, {lab.ville} | {lab.region}</i></p>
             <p className="text-[#696A78] text-[13px] font-medium md:mb-6 mb-4">{lab.description}</p>
             {/* Request Input */}
             <div className="flex gap-4 mb-10 items-center">
               <div className="flex-1 relative">
                 <input
                   type="text"
-                  value={lab["Attachment Summary"] || ""}
+                  value={lab?.siteWeb || ""}
                   readOnly
                   className="w-full px-5 py-3 bg-[#F1F1F1] dark:bg-[#F1F1F1] text-[13px] text-[#696A78] dark:text-[#696A78] font-medium outline-none"
                 />
-                {lab["Attachment Summary"] && (
+                {lab.siteWeb && (
                   <a
-                    href={lab["Attachment Summary"]}
+                    href={lab.siteWeb}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="absolute inset-0"
@@ -119,7 +119,7 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
               </div>
 
               <a
-                href={lab["Attachment Summary"] || "#"}
+                href={lab.siteWeb || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#F1F1F1] text-[13px] text-[#000000] py-3 px-4 flex items-center justify-center space-x-2 transition-colors dark:bg-[#F1F1F1] dark:text-[#000000] font-semibold"
@@ -221,15 +221,15 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
                     {lab.surface_totale} m²
                   </p>
                   <p className="text-[13px] text-[#696A78] dark:[#696A78]">
-                    <span className="font-bold">Min de location:</span>{" "}
+                    <span className="font-bold">Surface minimale de location:</span>{" "}
                     {lab.surface_min_totale} m²
                   </p>
                   <p className="text-[13px] text-[#696A78] dark:[#696A78]">
-                    <span className="font-bold">Max de location:</span>{" "}
+                    <span className="font-bold">Surface minimale de location:</span>{" "}
                     {lab.surface_max_totale} m²
                   </p>
                   <p className="text-[13px] text-[#696A78] dark:[#696A78] ">
-                    <span className="font-bold">Durée max:</span>{" "}
+                    <span className="font-bold">Durée max de location:</span>{" "}
                     {lab.duree_max_totale} mois
                   </p>
                 </div>
@@ -238,10 +238,10 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
               {/* Services Communs Techniques */}
               <div className="lg:col-span-1">
                 <h2 className="text-[13px] font-bold text-[#696A78] dark:[#696A78] mb-4">
-                  Services Communs Techniques
+                  Services Généraux
                 </h2>
                 <div className="flex flex-wrap gap-3">
-                  {lab.services_communs_techniques?.map((item, idx) => (
+                  {lab["Services Généraux"]?.map((item, idx) => (
                     <div
                       key={idx}
                       className="bg-gray-100 dark:bg-gray-100 rounded-full px-4 py-2"
@@ -257,10 +257,10 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
               {/* Services Communs Facility Management */}
               <div className="lg:col-span-1">
                 <h2 className="text-[13px] font-bold text-[#696A78] dark:[#696A78] mb-4">
-                  Services Communs Facility
+                  Services techniques communs
                 </h2>
                 <div className="flex flex-wrap gap-3">
-                  {lab.services_communs_facility?.map((item, idx) => (
+                  {lab["Services techniques communs"]?.map((item, idx) => (
                     <div
                       key={idx}
                       className="bg-gray-100 dark:bg-gray-100 rounded-full px-4 py-2"

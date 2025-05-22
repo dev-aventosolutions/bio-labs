@@ -27,6 +27,7 @@ function VerifyLab() {
   const [labId, setLabId] = useState("");
   const [imagePreview, setImagePreview] = useState("");
   const [imageFile, setImageFile] = useState(null);
+  console.log("lab",lab)
 
   const regions = [
     "Bourgogne-Franche-Comté",
@@ -50,8 +51,8 @@ function VerifyLab() {
 
   const statusOptions = [
     "Ouvert",
-    "Fermé",
-    "En construction",
+    "Ouverture prévue dans le futur",
+    "En rénovation / Fermé",
   ];
 
   useEffect(() => {
@@ -127,19 +128,23 @@ const handleSubmit = async (e) => {
     const updatedFields = {
       Name: lab?.name || "",
       "Type de structure": lab?.lab_de_structure || [],
-      Labos: lab?.labos || [],
+      "Type de laboratoire à la location": lab?.labos || [],
       Geocache: lab?.geocache || "",
       "Surface totale (m2)": Number(lab?.surface_totale) || "0",
       "Surface minimale de location": Number(lab?.surface_min_totale) || "0",
       "Surface maximale de location": Number(lab?.surface_max_totale) || "0",
       "Durée maximale de location (en mois)": Number(lab?.duree_max_totale) || "0",
-      "Services Communs Techniques": lab?.services_communs_techniques || [],
-      "Services Communs Facility Management": lab?.services_communs_facility || [],
+      "Services techniques communs": lab["Services techniques communs"] || [],
+      "Services Généraux": lab["Services Généraux"] || [],
       Région: lab?.region || "",
       Status: lab?.status || "",
-      "Type d'application": lab?.application || [],
+      "Comment candidater": lab["Comment candidater"] || [],
       Address: lab?.address || "",
       Description: lab?.description || "",
+      "Code postal":Number(lab["Code postal"]) || 0,
+      "Année d'ouverture":Number(lab["Année d'ouverture"]) || 0,
+      "Contact email":lab["Contact email"] || "",
+      "Site web":lab["Site web"] || "",
     };
 
     await updateLabData(labId, updatedFields);
@@ -376,20 +381,35 @@ const handleSubmit = async (e) => {
                   </select>
                 </div>
 
-                {/* Attachments */}
-                {/* <div className="space-y-2">
+                {/* postel code */}
+                <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
-                    Attachments
+                    Code postal
                   </label>
                   <input
                     type="number"
-                    name="attachment"
+                    name="Code postal"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
-                    value={lab.attachment || 0}
+                    value={lab["Code postal"] || 0}
                     onChange={handleInputChange}
                     min="0"
                   />
-                </div> */}
+                </div>
+
+                {/* annee */}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Année d'ouverture
+                  </label>
+                  <input
+                    type="number"
+                    name="Année d'ouverture"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
+                    value={lab["Année d'ouverture"] || 0}
+                    onChange={handleInputChange}
+                    min="0"
+                  />
+                </div>
 
 {/* surface_totale */}
                 <div className="space-y-2">
@@ -435,7 +455,7 @@ const handleSubmit = async (e) => {
                     min="0"
                   />
                 </div>
-
+{/* durree */}
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
                   Durée maximale de location (en mois)
@@ -465,6 +485,36 @@ const handleSubmit = async (e) => {
                   />
                 </div>
 
+                {/* contact email */}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                  Contact email <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="Contact email"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
+                    value={lab["Contact email"] || ""}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                {/* site web */}
+                {/* <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                  Site web <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="url"
+                    name="Site web"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
+                    value={lab["Site web"] || ""}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div> */}
+
                 {/* Attachment Summary */}
                 {/* <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
@@ -480,7 +530,7 @@ const handleSubmit = async (e) => {
                 </div> */}
 
                 {/* Description */}
-                {/* <div className="space-y-2 md:col-span-2">
+                <div className="space-y-2 md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700">
                     Description
                   </label>
@@ -491,7 +541,7 @@ const handleSubmit = async (e) => {
                     value={lab.description || ""}
                     onChange={handleInputChange}
                   />
-                </div> */}
+                </div>
 
                 {/* prix */}
                 {/* <div className="space-y-2 md:col-span-2">
@@ -551,7 +601,7 @@ const handleSubmit = async (e) => {
               {/* Labos */}
               <div className="space-y-3">
                 <label className="block text-sm font-medium text-gray-700">
-                Labos
+                Type de laboratoire à la location
                 </label>
                 <div className="flex flex-wrap gap-2">
                   {[
@@ -585,7 +635,7 @@ const handleSubmit = async (e) => {
               {/* Services Communs Techniques */}
               <div className="space-y-3">
                 <label className="block text-sm font-medium text-gray-700">
-                Services Communs Techniques
+                Services techniques communs
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                   {[
@@ -599,11 +649,11 @@ const handleSubmit = async (e) => {
                     <div
                       key={option}
                       className={`p-3 rounded-lg border transition-colors cursor-pointer ${
-                        (lab.services_communs_techniques || []).includes(option)
+                        (lab["Services techniques communs"] || []).includes(option)
                           ? "bg-[#FCE4EE] border-[#D31D74]"
                           : "bg-gray-50 border-gray-200 hover:bg-gray-100"
                       }`}
-                      onClick={() => handleArrayToggle("services_communs_techniques", option)}
+                      onClick={() => handleArrayToggle("Services techniques communs", option)}
                     >
                       <div className="flex items-center">
                         <div className={`w-5 h-5 rounded-md mr-3 flex items-center justify-center ${
@@ -611,7 +661,7 @@ const handleSubmit = async (e) => {
                             ? "bg-[#D31D74] text-white"
                             : "bg-gray-200"
                         }`}>
-                          {(lab.services_communs_techniques || []).includes(option) && (
+                          {(lab["Services techniques communs"] || []).includes(option) && (
                             <Check className="w-3 h-3" />
                           )}
                         </div>
@@ -625,7 +675,7 @@ const handleSubmit = async (e) => {
               {/* Services Communs Facility Management */}
               <div className="space-y-3">
                 <label className="block text-sm font-medium text-gray-700">
-                Services Communs Facility Management
+                Services Généraux
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                   {[
@@ -639,11 +689,11 @@ const handleSubmit = async (e) => {
                     <div
                       key={option}
                       className={`p-3 rounded-lg border transition-colors cursor-pointer ${
-                        (lab.services_communs_facility || []).includes(option)
+                        (lab["Services Généraux"] || []).includes(option)
                           ? "bg-[#FCE4EE] border-[#D31D74]"
                           : "bg-gray-50 border-gray-200 hover:bg-gray-100"
                       }`}
-                      onClick={() => handleArrayToggle("services_communs_facility", option)}
+                      onClick={() => handleArrayToggle("Services Généraux", option)}
                     >
                       <div className="flex items-center">
                         <div className={`w-5 h-5 rounded-md mr-3 flex items-center justify-center ${
@@ -651,7 +701,7 @@ const handleSubmit = async (e) => {
                             ? "bg-[#D31D74] text-white"
                             : "bg-gray-200"
                         }`}>
-                          {(lab.services_communs_facility || []).includes(option) && (
+                          {(lab["Services Généraux"] || []).includes(option) && (
                             <Check className="w-3 h-3" />
                           )}
                         </div>
@@ -662,10 +712,10 @@ const handleSubmit = async (e) => {
                 </div>
               </div>
 
-              {/* Type d'application */}
+              {/* comment conditor */}
               <div className="space-y-3">
                 <label className="block text-sm font-medium text-gray-700">
-                Type d'application
+                Comment candidater
                 </label>
                 <div className="flex flex-col gap-3">
                   {[
@@ -675,19 +725,19 @@ const handleSubmit = async (e) => {
                     <div
                       key={option}
                       className={`p-4 rounded-lg border transition-colors cursor-pointer ${
-                        (lab.application || []).includes(option)
+                        (lab["Comment candidater"] || []).includes(option)
                           ? "bg-[#FCE4EE] border-[#D31D74]"
                           : "bg-gray-50 border-gray-200 hover:bg-gray-100"
                       }`}
-                      onClick={() => handleArrayToggle("application", option)}
+                      onClick={() => handleArrayToggle("Comment candidater", option)}
                     >
                       <div className="flex items-center">
                         <div className={`w-5 h-5 rounded-full mr-3 flex items-center justify-center ${
-                          (lab.application || []).includes(option)
+                          (lab["Comment candidater"] || []).includes(option)
                             ? "bg-[#D31D74] text-white"
                             : "border border-gray-300"
                         }`}>
-                          {(lab.application || []).includes(option) && (
+                          {(lab["Comment candidater"] || []).includes(option) && (
                             <Check className="w-3 h-3" />
                           )}
                         </div>
