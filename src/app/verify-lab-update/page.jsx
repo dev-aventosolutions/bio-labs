@@ -49,6 +49,22 @@ function VerifyLab() {
     "Mayotte"
   ];
 
+ const villees = [
+    "Paris",
+    "Orsay",
+    "Paris-Saclay",
+    "Les Ulis",
+    "Marseille",
+    "Bordeaux",
+    "Illkirch",
+    "Romainville",
+    "Gif-Sur-Yuette",
+    "6 rue Jean Calvin",
+    "Orsy",
+    "Saclay",
+    ""
+  ];
+  
   const statusOptions = [
     "Ouvert",
     "Ouverture prévue dans le futur",
@@ -145,6 +161,7 @@ const handleSubmit = async (e) => {
       // "Année d'ouverture":Number(lab["Année d'ouverture"]) || 0,
       // "Contact email":lab["Contact email"] || "",
       // "Site web":lab["Site web"] || "",
+      Ville: lab?.ville || "",
     };
 
     await updateLabData(labId, updatedFields);
@@ -348,18 +365,24 @@ const handleSubmit = async (e) => {
                 </div>
 
                 {/* Ville */}
-                {/* <div className="space-y-2">
+                <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
-                    City
+                    Ville
                   </label>
-                  <input
-                    type="text"
+                  <select
                     name="ville"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
                     value={lab.ville || ""}
                     onChange={handleInputChange}
-                  />
-                </div> */}
+                  >
+                    <option value="">Select ville</option>
+                    {villees.map((ville) => (
+                      <option key={ville} value={ville}>
+                        {ville}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
                 {/* Status */}
                 <div className="space-y-2">
@@ -411,80 +434,8 @@ const handleSubmit = async (e) => {
                   />
                 </div> */}
 
-{/* surface_totale */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                  Surface totale
-                  </label>
-                  <input
-                    type="number"
-                    name="surface_totale"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
-                    value={lab.surface_totale || 0}
-                    onChange={handleInputChange}
-                    min="0"
-                  />
-                </div>
 
-                {/* surface min totale */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                  Surface minimale de location
-                  </label>
-                  <input
-                    type="number"
-                    name="surface_min_totale"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
-                    value={lab.surface_min_totale || 0}
-                    onChange={handleInputChange}
-                    min="0"
-                  />
-                </div>
-
-                {/* surface max location */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                  Surface maximale de location
-                  </label>
-                  <input
-                    type="number"
-                    name="surface_max_totale"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
-                    value={lab.surface_max_totale || 0}
-                    onChange={handleInputChange}
-                    min="0"
-                  />
-                </div>
-{/* durree */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                  Durée maximale de location (en mois)
-                  </label>
-                  <input
-                    type="number"
-                    name="duree_max_totale"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
-                    value={lab.duree_max_totale || 0}
-                    onChange={handleInputChange}
-                    min="0"
-                  />
-                </div>
-
-                {/* geo */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                  Geocache <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="geocache"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
-                    value={lab.geocache || ""}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
+               
                 {/* contact email */}
                 {/* <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
@@ -543,6 +494,44 @@ const handleSubmit = async (e) => {
                   />
                 </div>
 
+
+                
+              {/* comment conditor */}
+              <div className="space-y-3">
+                <label className="block text-sm font-medium text-gray-700">
+                Comment candidater
+                </label>
+                <div className="flex flex-col gap-3">
+                  {[
+                    "Au fil de l'eau",
+                    "Appels à candidatures périodiques (dates précises dans l'année)",
+                  ].map((option) => (
+                    <div
+                      key={option}
+                      className={`p-4 rounded-lg border transition-colors cursor-pointer ${
+                        (lab["Comment candidater"] || []).includes(option)
+                          ? "bg-[#FCE4EE] border-[#D31D74]"
+                          : "bg-gray-50 border-gray-200 hover:bg-gray-100"
+                      }`}
+                      onClick={() => handleArrayToggle("Comment candidater", option)}
+                    >
+                      <div className="flex items-center">
+                        <div className={`w-5 h-5 rounded-full mr-3 flex items-center justify-center ${
+                          (lab["Comment candidater"] || []).includes(option)
+                            ? "bg-[#D31D74] text-white"
+                            : "border border-gray-300"
+                        }`}>
+                          {(lab["Comment candidater"] || []).includes(option) && (
+                            <Check className="w-3 h-3" />
+                          )}
+                        </div>
+                        <span className="text-sm">{option}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
                 {/* prix */}
                 {/* <div className="space-y-2 md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700">
@@ -565,6 +554,66 @@ const handleSubmit = async (e) => {
                 Lab Features
               </h2>
               
+
+              {/* surface_totale */}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                  Surface totale
+                  </label>
+                  <input
+                    type="number"
+                    name="surface_totale"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
+                    value={lab.surface_totale || 0}
+                    onChange={handleInputChange}
+                    min="0"
+                  />
+                </div>
+
+                {/* surface min totale */}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                  Surface minimale de location
+                  </label>
+                  <input
+                    type="number"
+                    name="surface_min_totale"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
+                    value={lab.surface_min_totale || 0}
+                    onChange={handleInputChange}
+                    min="0"
+                  />
+                </div>
+
+                {/* surface max location */}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                  Surface maximale de location
+                  </label>
+                  <input
+                    type="number"
+                    name="surface_max_totale"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
+                    value={lab.surface_max_totale || 0}
+                    onChange={handleInputChange}
+                    min="0"
+                  />
+                </div>
+{/* durree */}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">
+                  Durée maximale de location (en mois)
+                  </label>
+                  <input
+                    type="number"
+                    name="duree_max_totale"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#D31D74] focus:border-[#D31D74]"
+                    value={lab.duree_max_totale || 0}
+                    onChange={handleInputChange}
+                    min="0"
+                  />
+                </div>
+
               {/* Type de structure */}
               <div className="space-y-3">
                 <label className="block text-sm font-medium text-gray-700">
@@ -712,41 +761,6 @@ const handleSubmit = async (e) => {
                 </div>
               </div>
 
-              {/* comment conditor */}
-              <div className="space-y-3">
-                <label className="block text-sm font-medium text-gray-700">
-                Comment candidater
-                </label>
-                <div className="flex flex-col gap-3">
-                  {[
-                    "Au fil de l'eau",
-                    "Appels à candidatures périodiques (dates précises dans l'année)",
-                  ].map((option) => (
-                    <div
-                      key={option}
-                      className={`p-4 rounded-lg border transition-colors cursor-pointer ${
-                        (lab["Comment candidater"] || []).includes(option)
-                          ? "bg-[#FCE4EE] border-[#D31D74]"
-                          : "bg-gray-50 border-gray-200 hover:bg-gray-100"
-                      }`}
-                      onClick={() => handleArrayToggle("Comment candidater", option)}
-                    >
-                      <div className="flex items-center">
-                        <div className={`w-5 h-5 rounded-full mr-3 flex items-center justify-center ${
-                          (lab["Comment candidater"] || []).includes(option)
-                            ? "bg-[#D31D74] text-white"
-                            : "border border-gray-300"
-                        }`}>
-                          {(lab["Comment candidater"] || []).includes(option) && (
-                            <Check className="w-3 h-3" />
-                          )}
-                        </div>
-                        <span className="text-sm">{option}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* Submit Button */}

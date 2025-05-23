@@ -45,23 +45,12 @@ export default function Maps() {
   };
 
   return (
-    <SectionWrapper className="relative w-full md:h-[60vh] h-[50vh]">
+    <SectionWrapper className="relative w-full md:h-[80vh] h-[70vh]">
       {/* Search Box */}
 
       {/* Map Embed */}
-      <div className="w-full h-full z-0">
-        <iframe
-          src="https://my.atlist.com/map/f5f00b02-abdf-4870-8240-fc1783f242d6?share=true"
-          allow="geolocation 'self' https://my.atlist.com"
-          width="100%"
-          height="100%"
-          loading="lazy"
-          frameBorder="0"
-          scrolling="no"
-          allowFullScreen
-          id="atlist-embed"
-          className=""
-        ></iframe>
+      <div className="w-full h-full z-0" >
+       <iframe src="https://my.atlist.com/map/f5f00b02-abdf-4870-8240-fc1783f242d6?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="395px" loading="lazy" frameborder="0" scrolling="no" allowfullscreen id="atlist-embed"></iframe>
       </div>
 
       {/* Optional: Preview Link to OpenStreetMap */}
