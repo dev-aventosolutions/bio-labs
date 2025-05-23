@@ -141,10 +141,10 @@ const handleSubmit = async (e) => {
       "Comment candidater": lab["Comment candidater"] || [],
       Address: lab?.address || "",
       Description: lab?.description || "",
-      "Code postal":Number(lab["Code postal"]) || 0,
-      "Année d'ouverture":Number(lab["Année d'ouverture"]) || 0,
-      "Contact email":lab["Contact email"] || "",
-      "Site web":lab["Site web"] || "",
+      // "Code postal":Number(lab["Code postal"]) || 0,
+      // "Année d'ouverture":Number(lab["Année d'ouverture"]) || 0,
+      // "Contact email":lab["Contact email"] || "",
+      // "Site web":lab["Site web"] || "",
     };
 
     await updateLabData(labId, updatedFields);
@@ -382,7 +382,7 @@ const handleSubmit = async (e) => {
                 </div>
 
                 {/* postel code */}
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
                     Code postal
                   </label>
@@ -394,10 +394,10 @@ const handleSubmit = async (e) => {
                     onChange={handleInputChange}
                     min="0"
                   />
-                </div>
+                </div> */}
 
                 {/* annee */}
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
                     Année d'ouverture
                   </label>
@@ -409,7 +409,7 @@ const handleSubmit = async (e) => {
                     onChange={handleInputChange}
                     min="0"
                   />
-                </div>
+                </div> */}
 
 {/* surface_totale */}
                 <div className="space-y-2">
@@ -486,7 +486,7 @@ const handleSubmit = async (e) => {
                 </div>
 
                 {/* contact email */}
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
                   Contact email <span className="text-red-500">*</span>
                   </label>
@@ -498,7 +498,7 @@ const handleSubmit = async (e) => {
                     onChange={handleInputChange}
                     required
                   />
-                </div>
+                </div> */}
 
                 {/* site web */}
                 {/* <div className="space-y-2">
