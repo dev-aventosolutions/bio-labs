@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Microscope,
   Building2,
@@ -41,6 +41,42 @@ export default function FilterBar({ onFiltersChange }) {
   const [labosCounts, setLabosCounts] = useState({});
   const [structureCounts, setStructureCounts] = useState({});
   const [openDropdown, setOpenDropdown] = useState(null); // 'regions', 'labos', 'structures', or null
+
+   const regionRef = useRef(null);
+  const labosRef = useRef(null);
+  const structuresRef = useRef(null);
+
+   useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Close dropdown if clicked outside
+      if (openDropdown === 'regions' && 
+          regionRef.current && 
+          !regionRef.current.contains(event.target)) {
+        setOpenDropdown(null);
+      }
+      
+      if (openDropdown === 'labos' && 
+          labosRef.current && 
+          !labosRef.current.contains(event.target)) {
+        setOpenDropdown(null);
+      }
+      
+      if (openDropdown === 'structures' && 
+          structuresRef.current && 
+          !structuresRef.current.contains(event.target)) {
+        setOpenDropdown(null);
+      }
+    };
+
+    // Add event listener when dropdown is open
+    if (openDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+     return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [openDropdown]);
+
 
  useEffect(() => {
   const fetchData = async () => {
@@ -147,7 +183,7 @@ export default function FilterBar({ onFiltersChange }) {
           {/* First row on mobile - Regions and Labos */}
           <div className="flex flex-row gap-2 w-full md:w-auto">
             {/* Region Dropdown */}
-            <div className="relative w-1/2 md:w-[175px] lg:w-[175px] md:text-[14px] text-[10px] font-normal cursor-pointer">
+            <div className="relative w-1/2 md:w-[175px] lg:w-[175px] md:text-[14px] text-[10px] font-normal cursor-pointer" ref={regionRef}>
               <button
                 className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer"
                 onClick={() => toggleDropdown('regions')}
@@ -243,7 +279,7 @@ export default function FilterBar({ onFiltersChange }) {
             </div>
 
             {/* Labos Dropdown */}
-            <div className="relative w-1/2 md:w-[175px] lg:w-[175px] md:text-[14px] text-[10px] font-normal cursor-pointer">
+            <div className="relative w-1/2 md:w-[175px] lg:w-[175px] md:text-[14px] text-[10px] font-normal cursor-pointer" ref={labosRef}>
               <button
                 className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer"
                 onClick={() => toggleDropdown('labos')}
@@ -338,7 +374,7 @@ export default function FilterBar({ onFiltersChange }) {
           {/* Second row on mobile - Structures and Ouvre Prochainement */}
           <div className="flex flex-row gap-3 w-full md:w-auto">
             {/* Structures Dropdown */}
-            <div className="relative w-1/2 md:w-[230px] lg:w-[230px] md:text-[14px] text-[10px] font-normal cursor-pointer">
+            <div className="relative w-1/2 md:w-[230px] lg:w-[230px] md:text-[14px] text-[10px] font-normal cursor-pointer" ref={structuresRef}>
               <button
                 className="flex items-center justify-between w-full border border-[#E3E3E3] bg-[#F1F1F1] text-[#1D0129] py-2 px-3 relative outline-none cursor-pointer"
                 onClick={() => toggleDropdown('structures')}
