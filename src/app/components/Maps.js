@@ -45,7 +45,7 @@ export default function Maps() {
   };
 
   return (
-    <SectionWrapper className="relative w-full md:h-[42vh] h-[42vh]">
+    <SectionWrapper className="relative w-full md:h-[50vh] h-[50vh]">
       {/* Search Box */}
 
       {/* Map Embed */}
@@ -53,7 +53,7 @@ export default function Maps() {
        <iframe src="https://my.atlist.com/map/f5f00b02-abdf-4870-8240-fc1783f242d6?share=true" 
        allow="geolocation 'self' https://my.atlist.com" 
        width="100%" 
-       height="395px" 
+       height="100%" 
        loading="lazy" 
        frameborder="0" 
        scrolling="no" 
