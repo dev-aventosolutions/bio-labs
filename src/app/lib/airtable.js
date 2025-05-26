@@ -12,7 +12,13 @@ export const fetchLabSpaces = async () => {
     },
   });
 
-  if (!response.ok) throw new Error("Failed to fetch lab spaces");
+if (!response.ok) {
+  return {
+    error: true,
+    message: `Failed to fetch lab spaces: ${response.statusText}`,
+    status: response.status,
+  };
+}
 
   const data = await response.json();
 
