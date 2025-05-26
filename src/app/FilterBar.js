@@ -141,7 +141,7 @@ export default function FilterBar({ onFiltersChange }) {
 
   return (
     <SectionWrapper>
-      <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap gap-3 w-full items-stretch">
+      <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap gap-3 w-full items-stretch md:pt-2">
         {/* Filters Group */}
         <div className="flex flex-col md:flex-row md:flex-wrap gap-2 flex-1">
           {/* First row on mobile - Regions and Labos */}
