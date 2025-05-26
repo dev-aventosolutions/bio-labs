@@ -28,10 +28,10 @@ export const ChevronDown = ({ className = "w-4 h-4" }) => (
   >
     <path
       d="M4 6L8 10L12 6"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke="#000"
+      strokeWidth="1.2"
+      strokeLinecap="bevel"
+      strokeLinejoin="bevel"
     />
   </svg>
 );

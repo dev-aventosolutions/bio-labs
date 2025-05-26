@@ -154,7 +154,7 @@ export default function FilterBar({ onFiltersChange }) {
               >
                 <div className="flex items-center space-x-2 flex-wrap gap-1">
                   <MapPin
-                    className="w-[12.52px] h-[15px]"
+                    className="w-[16px] h-[16px]"
                     style={{ color: "rgba(29, 1, 41, 0.48)" }}
                   />
                   <span className="text-left truncate flex items-center gap-1">
@@ -178,11 +178,13 @@ export default function FilterBar({ onFiltersChange }) {
 
               <AnimatePresence>
                 {openDropdown === 'regions' && (
+
                   <motion.div
+                    key="dropdown"
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                    transition={{ duration: 0.1, ease: "easeInOut" }}
                     className="absolute z-50 min-w-[240px] w-full overflow-hidden bg-white border-2 border-[#E3E3E3]"
                   >
                     <div className="p-2">
@@ -247,7 +249,7 @@ export default function FilterBar({ onFiltersChange }) {
                 onClick={() => toggleDropdown('labos')}
               >
                 <div className="flex items-center space-x-2 flex-wrap gap-1">
-                  <Labos className="w-[12.52px] h-[15px] text-gray-800" />
+                  <Labos className="w-[16px] h-[16px] text-gray-800" />
                   <span className="text-left truncate flex items-center gap-1">
                     {t("filterBar.labos")}
                     {selectedLabos.length > 0 && (
@@ -271,7 +273,7 @@ export default function FilterBar({ onFiltersChange }) {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                    transition={{ duration: 0.1, ease: "easeInOut" }}
                     className="absolute z-10 min-w-[240px] w-full overflow-hidden bg-white border-2 border-[#E3E3E3]"
                   >
                     <div className="p-2">
@@ -334,7 +336,7 @@ export default function FilterBar({ onFiltersChange }) {
           </div>
 
           {/* Second row on mobile - Structures and Ouvre Prochainement */}
-          <div className="flex flex-row gap-2 w-full md:w-auto">
+          <div className="flex flex-row gap-3 w-full md:w-auto">
             {/* Structures Dropdown */}
             <div className="relative w-1/2 md:w-[230px] lg:w-[230px] md:text-[14px] text-[10px] font-normal cursor-pointer">
               <button
@@ -343,7 +345,7 @@ export default function FilterBar({ onFiltersChange }) {
               >
                 <div className="flex items-center space-x-2 flex-wrap gap-1">
                   <Structure
-                    className="w-[12.52px] h-[15px]"
+                    className="w-[16px] h-[16px]"
                     style={{ color: "rgba(29, 1, 41, 0.48)" }}
                   />
                   <span className="text-left truncate flex items-center gap-1">
@@ -369,7 +371,7 @@ export default function FilterBar({ onFiltersChange }) {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                    transition={{ duration: 0.1, ease: "easeInOut" }}
                     className="absolute z-10 min-w-[260px] w-full overflow-hidden bg-white border-2 border-[#E3E3E3]"
                   >
                     <div className="p-2">
@@ -433,6 +435,8 @@ export default function FilterBar({ onFiltersChange }) {
                 )}
               </AnimatePresence>
             </div>
+            
+            <div className="hidden md:block w-px h-10.5 bg-gray-300" /> 
 
             {/* Checkbox Filter */}
             <div
@@ -444,7 +448,7 @@ export default function FilterBar({ onFiltersChange }) {
               onClick={() => setIsOuvreProchainement(!isOuvreProchainement)}
             >
               <div
-                className={`w-[12.52px] h-[15px] flex items-center justify-center rounded-full ${
+                className={`w-[16px] h-[16px] flex items-center justify-center rounded-full ${
                   isOuvreProchainement ? "bg-[#D31D74]" : "bg-transparent"
                 }`}
               >
@@ -510,7 +514,7 @@ export default function FilterBar({ onFiltersChange }) {
               transition-all duration-200 dark:bg-white dark:text-[#1D0129] dark:border-[#E3E3E3] 
               dark:hover:bg-gray-100"
           >
-            <Add className="w-[12.52px] h-[15px] text-[#1D0129]" />
+            <Add className="w-[16px] h-[16px] text-[#1D0129]" />
             <span className="md:text-[14px] text-[10px] font-normal">
               {t("filterBar.ajouterLieu") || "Ajouter un lieu"}
             </span>
