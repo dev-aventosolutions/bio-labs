@@ -73,7 +73,7 @@ export default function LabCard({ lab: initialLab }) {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="absolute inset-0  flex flex-col justify-center items-center text-white text-center px-2">
-                <h3 className="text-sm font-bold mb-1 truncate">{lab.year}</h3>
+                <h3 className="text-sm font-bold mb-1 truncate">{lab.name}  {lab.year}</h3>
               </div>
             </>
           )}

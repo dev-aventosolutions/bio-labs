@@ -48,7 +48,7 @@ export default function HeroSection() {
 
   {/* Subtitle */}
   <p className="text-white text-[7px] sm:text-[8px] md:text-lg lg:text-xl xl:text-2xl 2xl:text-[20.22px] mt-4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
-    {t("hero.subtitle")}
+     Trouvez un espace de laboratoire pour votre startup!
   </p>
 </div>
 
@@ -86,7 +86,7 @@ export default function HeroSection() {
   </p>
 
   <p className="text-white text-[14px] sm:text-[13px] md:text-lg lg:text-xl xl:text-2xl 2xl:text-[20.22px]  max-w-full break-words">
-    {t("hero.subtitle")}
+     Trouvez un espace de laboratoire pour votre startup!
   </p>
 </div>
 

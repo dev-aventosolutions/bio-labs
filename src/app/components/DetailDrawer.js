@@ -97,7 +97,10 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
                 <Pencil className="h-5 w-5 text-gray-600 dark:text-gray-600 cursor-pointer" />
               </button>
             </div>
+
             <p className="text-[13px] font-normal mb-4" style={{ color: "rgba(105, 106, 120, 0.6)" }}><i>{lab.address} - {lab["Code postal"]}, {lab.ville} | {lab.region}</i></p>
+            <p className="text-[13px] font-normal mb-4" style={{ color: "rgba(105, 106, 120, 0.6)" }}>Contact email: {lab["Contact email"]}</p>
+
             <p className="text-[#696A78] text-[13px] font-medium md:mb-6 mb-4">{lab.description}</p>
             {/* Request Input */}
             <div className="flex gap-4 mb-10 items-center">
