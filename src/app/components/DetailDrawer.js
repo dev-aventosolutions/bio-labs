@@ -193,20 +193,36 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
               </div>
 
               {/* Type d'offre */}
-              <div>
-                <h2 className="text-[13px] font-bold text-[#696A78] dark:[#696A78] mb-4">
-                  Type d&rsquo;offre
-                </h2>
-                <div className="flex flex-wrap gap-3">
-                {lab.offer && (
-    <div className="border-2 border-gray-200 bg-gray-50 dark:bg-gray-50 dark:border-gray-200 px-2 py-1">
-      <span className="text-[13px] font-semibold text-[#000000] dark:text-[#000000]">
-        {lab.offer}
-      </span>
-    </div>
-  )}
-                </div>
-              </div>
+
+
+             
+
+              
+<div>
+  <h2 className="text-[13px] font-bold text-[#696A78] dark:text-[#696A78] mb-4">
+    Type d’offre
+  </h2>
+  <div className="flex flex-wrap gap-3">
+    {Array.isArray(lab.offer) ? (
+      lab.offer.map((item, idx) => (
+        <div
+          key={idx}
+          className="border-2 border-gray-200 bg-gray-50 dark:bg-gray-50 px-2 py-1"
+        >
+          <span className="text-[13px] font-semibold text-[#000000] dark:text-[#000000]">
+            {item}
+          </span>
+        </div>
+      ))
+    ) : lab.offer ? (
+      <div className="border-2 border-gray-200 bg-gray-50 dark:bg-gray-50 px-2 py-1">
+        <span className="text-[13px] font-semibold text-[#000000] dark:text-[#000000]">
+          {lab.offer}
+        </span>
+      </div>
+    ) : null}
+  </div>
+</div>
             </div>
 
             <hr className="border-t border-gray-200 dark:border-gray-200 my-8" />

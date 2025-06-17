@@ -6,7 +6,7 @@ export default function LabGrid({ labSpaces }) {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           {labSpaces.map((labSpace) => (
-            <LabCard key={labSpace.id} lab={labSpace} />
+            <LabCard key={labSpace.id} lab={labSpace}  isOuvreProchainementFilterActive={isOuvreProchainement}  />
           ))}
         </div>
       </div>

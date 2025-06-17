@@ -9,7 +9,7 @@ import { CheckSquare, Square } from "lucide-react";
 import { XIcon, Search, Home, FlaskConical } from "lucide-react";
 import { Type1, Type2, Type3, Type4, Type5 } from "../Icons";
 
-export default function LabCard({ lab: initialLab }) {
+export default function LabCard({ lab: initialLab, isOuvreProchainementFilterActive }) {
   const { t } = useTranslation();
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDetailDrawer, setOpenDetailDrawer] = useState(false);
@@ -53,42 +53,32 @@ export default function LabCard({ lab: initialLab }) {
         }}
         onClick={() => setOpenDetailDrawer(true)}
       >
-        <div className="relative h-40 w-full mb-4 rounded-md overflow-hidden">
-          {/* <Link href={`/labs/${lab.id}`} className="block h-full w-full"> */}
-          {lab.imageUrl ? (
+<div className="relative h-40 w-full mb-4 rounded-md overflow-hidden">
+        {isOuvreProchainementFilterActive || !lab.imageUrl ? (
+          <>
             <Image
-              src={lab.imageUrl}
-              alt={lab.name || "Lab Image"}
+              src="/default.png"
+              alt="Default Image"
               fill
               className="object-cover cursor-pointer"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-          ) : (
-            <>
-              <Image
-                src="/default.png"
-                alt="Default Image"
-                fill
-                className="object-cover cursor-pointer"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0  flex flex-col justify-center items-center text-white text-center px-2">
-                <h3 className="text-sm font-bold mb-1 truncate">{lab.name}  {lab.year}</h3>
-              </div>
-            </>
-          )}
-
-          {/* </Link> */}
-
-          {/* <button
-            onClick={() => setOpenDrawer(true)}
-            className="absolute top-2 right-2 bg-white rounded-full p-1 shadow hover:bg-gray-200 transition z-10"
-            aria-label={t('labCard.editButton')}
-          >
-            <Pencil className="h-4 w-4 text-gray-700 cursor-pointer" />
-          </button> */}
-        </div>
-
+            <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-2">
+              <h3 className="text-sm font-bold mb-1 truncate">
+                Ouverture prévue en {lab.year}
+              </h3>
+            </div>
+          </>
+        ) : (
+          <Image
+            src={lab.imageUrl}
+            alt={lab.name || "Lab Image"}
+            fill
+            className="object-cover cursor-pointer"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        )}
+      </div>
         <div className="flex flex-col justify-between flex-grow">
           <h3 className="text-[15.42px] font-bold text-[#1D0129]  truncate">
             {lab.name}
