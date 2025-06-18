@@ -99,7 +99,11 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
             </div>
 
             <p className="text-[13px] font-normal mb-4" style={{ color: "rgba(105, 106, 120, 0.6)" }}><i>{lab.address} - {lab["Code postal"]}, {lab.ville} | {lab.region}</i></p>
-            <p className="text-[13px] font-normal mb-4" style={{ color: "rgba(105, 106, 120, 0.6)" }}>Contact email: {lab["Contact email"]}</p>
+            {/* <p className="text-[13px] font-normal mb-4" style={{ color: "rgba(105, 106, 120, 0.6)" }}>Contact email: {lab["Contact email"]}</p> */}
+            <p className="text-[13px] font-normal mb-4 flex items-center gap-1" style={{ color: "rgba(105, 106, 120, 0.6)" }}>
+            <img src="/envelope_icon.svg" alt="Email Icon" className="w-4 h-4"
+            style={{ filter: "invert(41%) sepia(3%) saturate(328%) hue-rotate(202deg) brightness(97%) contrast(90%)" }}/>
+            : {lab["Contact email"]}</p>
 
             <p className="text-[#696A78] text-[13px] font-medium md:mb-6 mb-4">{lab.description}</p>
             {/* Request Input */}
