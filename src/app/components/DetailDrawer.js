@@ -98,14 +98,15 @@ export default function DetailDrawer({ isOpen, onClose, lab, onEditClick }) {
               </button>
             </div>
 
-            <p className="text-[13px] font-normal mb-4" style={{ color: "rgba(105, 106, 120, 0.6)" }}><i>{lab.address} - {lab["Code postal"]}, {lab.ville} | {lab.region}</i></p>
+            <p className="text-[13px] font-normal mb-1" style={{ color: "rgba(105, 106, 120, 0.6)" }}><i>{lab.address} - {lab["Code postal"]}, {lab.ville} | {lab.region}</i></p>
             {/* <p className="text-[13px] font-normal mb-4" style={{ color: "rgba(105, 106, 120, 0.6)" }}>Contact email: {lab["Contact email"]}</p> */}
-            <p className="text-[13px] font-normal mb-4 flex items-center gap-1" style={{ color: "rgba(105, 106, 120, 0.6)" }}>
+            {lab["Contact email"] && (
+            <p className="text-[13px] font-normal flex items-center gap-1" style={{ color: "rgba(105, 106, 120, 0.6)" }}>
             <img src="/envelope_icon.svg" alt="Email Icon" className="w-4 h-4"
             style={{ filter: "invert(41%) sepia(3%) saturate(328%) hue-rotate(202deg) brightness(97%) contrast(90%)" }}/>
-            {lab["Contact email"]}</p>
+            {lab["Contact email"]}</p>)}
 
-            <p className="text-[#696A78] text-[13px] font-medium md:mb-6 mb-4">{lab.description}</p>
+            <p className="text-[#696A78] text-[13px] font-medium mt-4 md:mb-6 mb-4">{lab.description}</p>
             {/* Request Input */}
             <div className="flex gap-4 mb-10 items-center">
               <div className="flex-1 relative">
