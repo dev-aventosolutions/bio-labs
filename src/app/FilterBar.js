@@ -40,7 +40,9 @@ export default function FilterBar({ onFiltersChange }) {
   const [regionCounts, setRegionCounts] = useState({});
   const [labosCounts, setLabosCounts] = useState({});
   const [structureCounts, setStructureCounts] = useState({});
-  const [openDropdown, setOpenDropdown] = useState(null); // 'regions', 'labos', 'structures', or null
+  const [openDropdown, setOpenDropdown] = useState(null); 
+  
+  // 'regions', 'labos', 'structures', or null
 
    const regionRef = useRef(null);
   const labosRef = useRef(null);

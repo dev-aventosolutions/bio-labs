@@ -5,24 +5,17 @@ import Image from "next/image";
 import DetailDrawer from "../DetailDrawer";
 import EditModal from "../EditModal";
 import { useTranslation } from "../../lib/translate";
-import { CheckSquare, Square } from "lucide-react";
-import { XIcon, Search, Home, FlaskConical } from "lucide-react";
+import { CheckSquare } from "lucide-react";
 import { Type1, Type2, Type3, Type4, Type5 } from "../Icons";
 
 export default function LabCard({ lab: initialLab, isOuvreProchainementFilterActive }) {
   const { t } = useTranslation();
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDetailDrawer, setOpenDetailDrawer] = useState(false);
-  // const [toast, setToast] = useState({ show: false, message: "", type: "" });
   const [lab, setLab] = useState(initialLab);
-  // const showToast = (message, type = "success") => {
-  //   setToast({ show: true, message, type });
-  //   setTimeout(() => setToast({ show: false, message: "", type: "" }), 3000);
-  // };
 
   const handleUpdateSuccess = (updatedLab) => {
     setLab(updatedLab);
-    // showToast(t("labCard.updateSuccess"));
     setOpenEditModal(false);
     setOpenDetailDrawer(true);
   };
@@ -34,10 +27,61 @@ export default function LabCard({ lab: initialLab, isOuvreProchainementFilterAct
     return text;
   };
 
+  const renderImage = () => {
+    // Show static image only for future-opening labs when filter is unchecked
+    if (lab.status === "Ouverture prévue dans le futur" && !isOuvreProchainementFilterActive) {
+      return (
+        <>
+          <Image
+            src="/default.png"
+            alt="Default Image"
+            fill
+            className="object-cover cursor-pointer"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-2">
+            <h3 className="text-sm font-bold mb-1 truncate">
+              Ouverture prévue en {lab.year}
+            </h3>
+          </div>
+        </>
+      );
+    }
+    
+    // For all other cases, show the lab's image if available
+    if (lab.imageUrl) {
+      return (
+        <Image
+          src={lab.imageUrl}
+          alt={lab.name || "Lab Image"}
+          fill
+          className="object-cover cursor-pointer"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      );
+    }
+    
+    // Fallback to default image with lab name
+    return (
+      <>
+        <Image
+          src="/default.png"
+          alt="Default Image"
+          fill
+          className="object-cover cursor-pointer"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-2">
+          <h3 className="text-sm font-bold mb-1 truncate">
+            {lab.name}
+          </h3>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
-      {/* {toast.show && <Toast message={toast.message} type={toast.type} />} */}
-
       <div
         className="bg-white dark:bg-white cursor-pointer text-black dark:text-black rounded-lg overflow-hidden transition-shadow duration-300 p-2 flex flex-col h-full relative"
         style={{
@@ -53,34 +97,12 @@ export default function LabCard({ lab: initialLab, isOuvreProchainementFilterAct
         }}
         onClick={() => setOpenDetailDrawer(true)}
       >
-<div className="relative h-40 w-full mb-4 rounded-md overflow-hidden">
-        {isOuvreProchainementFilterActive || !lab.imageUrl ? (
-          <>
-            <Image
-              src="/default.png"
-              alt="Default Image"
-              fill
-              className="object-cover cursor-pointer"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-            <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-2">
-              <h3 className="text-sm font-bold mb-1 truncate">
-                Ouverture prévue en {lab.year}
-              </h3>
-            </div>
-          </>
-        ) : (
-          <Image
-            src={lab.imageUrl}
-            alt={lab.name || "Lab Image"}
-            fill
-            className="object-cover cursor-pointer"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-        )}
-      </div>
+        <div className="relative h-40 w-full mb-4 rounded-md overflow-hidden">
+          {renderImage()}
+        </div>
+        
         <div className="flex flex-col justify-between flex-grow">
-          <h3 className="text-[15.42px] font-bold text-[#1D0129]  truncate">
+          <h3 className="text-[15.42px] font-bold text-[#1D0129] truncate">
             {lab.name}
           </h3>
 
@@ -98,22 +120,21 @@ export default function LabCard({ lab: initialLab, isOuvreProchainementFilterAct
               {t("labCard.labos")}
             </p>
             <div className="flex flex-row gap-1 text-[12px] font-medium">
-            {lab.labos && lab.labos.length > 0 ? (
-  lab.labos.map((label) => (
-    <div
-      key={label}
-      className="flex items-center gap-2 bg-[#ececec] text-[#656778] px-2 py-1"
-    >
-      <CheckSquare size={16} className="text-[#656778]" />
-      <span className="font-bold text-[#656778]">{label}</span>
-    </div>
-  ))
-) : (
-  <span className="px-2 py-1 text-[12px] font-medium text-[#656778] bg-[#ececec]">
-    {t("labCard.noLabos")}
-  </span>
-)}
-
+              {lab.labos && lab.labos.length > 0 ? (
+                lab.labos.map((label) => (
+                  <div
+                    key={label}
+                    className="flex items-center gap-2 bg-[#ececec] text-[#656778] px-2 py-1"
+                  >
+                    <CheckSquare size={16} className="text-[#656778]" />
+                    <span className="font-bold text-[#656778]">{label}</span>
+                  </div>
+                ))
+              ) : (
+                <span className="px-2 py-1 text-[12px] font-medium text-[#656778] bg-[#ececec]">
+                  {t("labCard.noLabos")}
+                </span>
+              )}
             </div>
           </div>
 
@@ -126,7 +147,7 @@ export default function LabCard({ lab: initialLab, isOuvreProchainementFilterAct
                 lab.offer.map((item, index) => (
                   <span
                     key={index}
-                    className="px-2 py-1 text-[12px] font-medium text-[#656778]  bg-[#ececec]"
+                    className="px-2 py-1 text-[12px] font-medium text-[#656778] bg-[#ececec]"
                   >
                     {item}
                   </span>
