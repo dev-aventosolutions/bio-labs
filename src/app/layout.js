@@ -28,9 +28,9 @@ export const metadata = {
     siteName: "LabSpaces",
     images: [
       {
-        url: "https://labspaces.fr/lablogo.svg", // path to your image
-        width: 600,
-        height: 600,
+        url: "https://labspaces.fr/lablogo.png", // path to your image
+        width: 1200,
+        height: 625,
         alt: "LabSpaces - Find biotech lab spaces in France",
       },
     ],
@@ -41,7 +41,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "LabSpaces",
     description: "🧬 Find a lab space for your biotech startup in France - simple, free, and community-driven!",
-    images: ["https://labspaces.fr/lablogo.svg"], // same or different image
+    images: ["https://labspaces.fr/lablogo.png"], // same or different image
   },
 };
 
