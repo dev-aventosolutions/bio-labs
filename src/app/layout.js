@@ -23,7 +23,7 @@ export const metadata = {
   description: "🧬 Find a lab space for your biotech startup in France - simple, free, and community-driven!",
   openGraph: {
     title: "LabSpaces",
-    description: "Discover and share lab spaces across France for biotech startups — join the community today!",
+    description: "🧬 Find a lab space for your biotech startup in France - simple, free, and community-driven!",
     url: "https://labspaces.fr", // update with your actual URL
     siteName: "LabSpaces",
     images: [
@@ -40,7 +40,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "LabSpaces",
-    description: "Find and share biotech lab spaces across France — join the LabSpaces community!",
+    description: "🧬 Find a lab space for your biotech startup in France - simple, free, and community-driven!",
     images: ["/lablogo.png"], // same or different image
   },
 };
