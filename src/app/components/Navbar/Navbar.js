@@ -124,6 +124,7 @@ export default function Navbar() {
           )}
         </Listbox>
       </SectionWrapper>
+      
     </header>
   );
 }
