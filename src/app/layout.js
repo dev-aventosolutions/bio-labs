@@ -29,8 +29,8 @@ export const metadata = {
     images: [
       {
         url: "/lablogo.png", // path to your image
-        width: 1200,
-        height: 630,
+        width: 600,
+        height: 600,
         alt: "LabSpaces - Find biotech lab spaces in France",
       },
     ],
